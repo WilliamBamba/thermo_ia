@@ -20,7 +20,7 @@ let test = async () => {
 
 test();
 
-app.post('/save/sensor/data', async (req, res) => {
+app.post('/sensors', async (req, res) => {
     let data = {
         ctemp: req.body.ctemp,
         fan: req.body.fan,
@@ -30,7 +30,7 @@ app.post('/save/sensor/data', async (req, res) => {
     res.send(data);
 });
 
-app.get('/fetch/data/', (req, res) => {
+app.get('/sensors/{date}', (req, res) => {
 
 });
 
