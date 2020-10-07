@@ -2,23 +2,15 @@ const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
-const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
 const port = 8080;
 
-const models = require('./models');
-models.init(sequelize);
+require('./migrate');
 
+const models = require('./models');
 const SensorData = models.SensorData;
 
 app.use(bodyParser.json());
 
-
-let test = async () => {
-    await sequelize.sync();
-};
-
-test();
 
 app.post('/sensors', async (req, res) => {
     let data = {
