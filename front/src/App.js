@@ -6,11 +6,10 @@ import s, {initialState} from './store';
 function App() {
   const [storage, setStorage] = useState(initialState);
   const store = s(storage, setStorage);
+  /* <p>count global: {store.state.count}</p> */
+  
   return (
-    <div>
-      <Home store={store} />
-      <p>count global: {store.state.count}</p>
-    </div>
+    <Home store={store} />
   );
 };
 

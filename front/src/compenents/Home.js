@@ -1,8 +1,13 @@
-import { useState } from "react";
+/*import { useState } from "react";*/
+
 import React from 'react';
+import Parametres from './Parametres';
+import Info from './Info/Info';
+import Temp from './Temp/Temp';
 
 
-export default ({store}) => {
+
+/*export default ({store}) => {
 
     const [count, setCount] = useState(0);
 
@@ -14,4 +19,16 @@ export default ({store}) => {
             <button onClick={() => store.merge({count: store.state.count+1})}>+ global</button>
         </div>
     );
-};
+};*/
+
+export default({store}) => {
+    
+    return (
+        <div id='home'>
+            <Parametres />
+            <Info />
+            <Temp />
+        </div>
+    );
+
+}
