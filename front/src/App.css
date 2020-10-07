@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+/* =========================================================
+                    Interface CSS
+   =======================================================*/
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+#home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: black;
+}
+
+#param {
+  display: flex;
+  background-color: cornsilk;
+}
+
+#info {
+  display: flex;
+  flex: 1;
+  background-color: crimson;
+}
+
+#temp {
+  display: flex;
+  flex: 1;
+  background-color: cyan;
+}
+
+#meteo {
+  display: flex;
+  flex: 1;
+  background-color: darkmagenta;
+}
+
+#tempActuel {
+  display: flex;
+  flex: 1;
+  background-color: gold;
+}
+
+#tempEvolution {
+  display: flex;
+  flex: 1;
+  background-color: forestgreen;
+}
+
+#tempGestion {
+  display: flex;
+  flex: 1;
+  background-color: orangered;
+}
