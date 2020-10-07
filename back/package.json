@@ -1,0 +1,9 @@
+{
+  "name": "back_thermox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://forge.univ-lyon1.fr/p1609997/groupex",
+  "author": "SH <shajjad.hossain@etu.univ-lyon1.fr>",
+  "license": "MIT",
+  "private": true
+}
