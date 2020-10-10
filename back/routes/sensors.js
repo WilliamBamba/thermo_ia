@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
     res.send(data);
 });
 
-router.get('/{date}', (req, res) => {
-
+router.get('/:day-:month/', (req, res) => {
+    res.send('not implemented');
 });
 
 module.exports = router;
