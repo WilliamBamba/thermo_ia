@@ -11,20 +11,12 @@ const SensorData = models.SensorData;
 
 app.use(bodyParser.json());
 
+const weather = require('./routes/weather');
+const sensors = require('./routes/sensors');
 
-app.post('/sensors', async (req, res) => {
-    let data = {
-        ctemp: req.body.ctemp,
-        fan: req.body.fan,
-        heat: req.body.heat
-    };
-    data = await SensorData.create(data);
-    res.send(data);
-});
+app.use('/weather', weather);
+app.use('/sensors', sensors);
 
-app.get('/sensors/{date}', (req, res) => {
-
-});
 
 app.listen(port, () => {
     console.log(`connected to ${port}`);
