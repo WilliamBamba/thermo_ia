@@ -6,8 +6,6 @@ const port = 8080;
 
 require('./migrate');
 
-const models = require('./models');
-const SensorData = models.SensorData;
 
 app.use(bodyParser.json());
 
