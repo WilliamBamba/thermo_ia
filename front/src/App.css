@@ -79,38 +79,40 @@
   margin: 0;
 }
 
+.TitreSection {
+  text-align: center;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  flex: 1;
+}
+
 #info {
   display: flex;
   flex: 1;
-  background-color: crimson;
 }
 
 #temp {
   display: flex;
   flex: 1;
-  background-color: cyan;
 }
 
 #meteo {
   display: flex;
   flex: 1;
-  background-color: darkmagenta;
 }
 
 #tempActuel {
   display: flex;
   flex: 1;
-  background-color: gold;
 }
 
 #tempEvolution {
   display: flex;
   flex: 1;
-  background-color: forestgreen;
 }
 
 #tempGestion {
   display: flex;
   flex: 1;
-  background-color: orangered;
 }
