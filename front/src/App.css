@@ -44,18 +44,39 @@
 #root {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 #home {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: black;
+  background-color: ivory;
+  padding-left: 1em;
+  padding-bottom: 2em;
+  padding-right: 1em;
 }
 
 #param {
   display: flex;
-  background-color: cornsilk;
+  flex-direction: row;
+  margin: 1em;
+}
+
+#icon {
+  display: flex;
+  flex: 1;
+}
+
+#heure {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
 }
 
 #info {
