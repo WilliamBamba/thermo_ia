@@ -84,7 +84,6 @@
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
-  flex: 1;
 }
 
 #info {
@@ -100,9 +99,16 @@
 #meteo {
   display: flex;
   flex: 1;
+  flex-direction: column;
 }
 
 #tempActuel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+#cercle {
   display: flex;
   flex: 1;
 }
@@ -110,9 +116,41 @@
 #tempEvolution {
   display: flex;
   flex: 1;
+  flex-direction: column;
 }
 
 #tempGestion {
   display: flex;
   flex: 1;
+  flex-direction: column;
+}
+
+/* Interface cercle */
+.circle-svg {
+  display: block;
+  margin: 10px auto;
+  max-height: 30vh;
+}
+.circle-svg text {
+  text-align:center;
+  color:black;
+  font-size:10px
+}
+.circle-svg path.percent {
+  stroke: #6f6fff;
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+.circle-svg path.around {
+    stroke: #c4c4c4;
+    fill: none;
+    stroke-width: 4;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100; 
+  }
 }
