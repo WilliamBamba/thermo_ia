@@ -12,28 +12,7 @@ export default ({store}) => {
     // on prend un jour c'est le premier jour
     const forcast_day = weather.forecast.forecastday[0];
     const forcast_by_hours = forcast_day.hour;
-    
-    /* 
-    {forcast_by_hours.map(hour => {
-                    return (
-                        <div className='card'>
-                            <h3 class="title">Card 1</h3>
-                            <div class="bar">
-                                <div class="emptybar"></div>
-                                <div class="filledbar"></div>
-                            </div>
-                            <div className='imgInfo'>
-                                <img className='img' src={hour.condition.icon} alt="condition" />
-                                <div class="card-content">
-                                    <p>BLABLA</p>
-                                </div>
-                            </div>
-                        </div>
-                    ) 
-                })}
-    */
-    /* 
-                                {hour.temp_c}C à {hour.time.split(' ')[1]}h*/
+
     // regardes le format
 
     return (
