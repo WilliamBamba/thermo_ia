@@ -12,7 +12,28 @@ export default ({store}) => {
     // on prend un jour c'est le premier jour
     const forcast_day = weather.forecast.forecastday[0];
     const forcast_by_hours = forcast_day.hour;
-
+    
+    /* 
+    {forcast_by_hours.map(hour => {
+                    return (
+                        <div className='card'>
+                            <h3 class="title">Card 1</h3>
+                            <div class="bar">
+                                <div class="emptybar"></div>
+                                <div class="filledbar"></div>
+                            </div>
+                            <div className='imgInfo'>
+                                <img className='img' src={hour.condition.icon} alt="condition" />
+                                <div class="card-content">
+                                    <p>BLABLA</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) 
+                })}
+    */
+    /* 
+                                {hour.temp_c}C à {hour.time.split(' ')[1]}h*/
     // regardes le format
 
     return (
@@ -20,12 +41,25 @@ export default ({store}) => {
             <p className='TitreSection'>Météo Aujourd'hui</p>
             <p>location: {weather.location.name}</p>
             <p>sunrise: {forcast_day.astro.sunrise} sunset: {forcast_day.astro.sunset}</p>
-            <p>{forcast_by_hours.map(hour => {
-                return (<p>
-                            {hour.temp_c}C à {hour.time.split(' ')[1]}h
-                            <img src={hour.condition.icon} alt="condition" />
-                    </p>) 
-            })}</p>
+            <div className='container'>
+            {forcast_by_hours.map(hour => {
+                    return (
+                        <div className='card'>
+                            <h3 class="title">{hour.temp_c}°C</h3>
+                            <div class="bar">
+                                <div class="emptybar"></div>
+                                <div class="filledbar"></div>
+                            </div>
+                            <div className='imgInfo'>
+                                <img className='img' src={hour.condition.icon} alt="condition" />
+                                <div class="card-content">
+                                    <p>{hour.time.split(' ')[1]}h</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) 
+                })}
+            </div>
         </div>
     );
 };
