@@ -6,7 +6,7 @@ export default ({store}) => {
 
     function getHour() {
         const h = new Date();
-        return ` ${zero(h.getHours())}:${zero(h.getMinutes())}:${zero(h.getSeconds())}`;
+        return ` ${zero(h.getHours())}:${zero(h.getMinutes())}`;
     }
 
     const [hour, setHour] = useState(getHour());
