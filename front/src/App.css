@@ -52,10 +52,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: ivory;
-  padding-left: 1em;
-  padding-bottom: 2em;
-  padding-right: 1em;
+  background-color: #151c24;
+  color: white;
 }
 
 #param {
@@ -89,23 +87,34 @@
 #info {
   display: flex;
   flex: 1;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 #temp {
   display: flex;
   flex: 1;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 2em;
 }
 
 #meteo {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 #tempActuel {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 #cercle {
@@ -117,12 +126,18 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 #tempGestion {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 /* Interface cercle */
@@ -133,18 +148,18 @@
 }
 .circle-svg text {
   text-align:center;
-  color:black;
+  color:white;
   font-size:10px
 }
 .circle-svg path.percent {
-  stroke: #6f6fff;
+  stroke : url(#gradient);
   fill: none;
   stroke-width: 4;
   stroke-linecap: round;
   animation: progress 1s ease-out forwards;
 }
 .circle-svg path.around {
-    stroke: #c4c4c4;
+    stroke: #2c3239;
     fill: none;
     stroke-width: 4;
 }
@@ -158,6 +173,9 @@
 /* Carroussel Météo */
  .container {
   display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 .card {
@@ -210,90 +228,34 @@
 
 .filledbar {
   height: 5px;
-  background: rgb(0,154,217);
-  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
-  transition: 0.6s ease-out;
+  border-radius: 1em;
+  /*background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);*/
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
 }
 
-
-
-/*.card {
-  display: flex;
-  height: 280px;
-  width: 150px;
-  background-color: #17141d;
-  border-radius: 10px;
-  box-shadow: 0rem 0 1rem #000;
-   #margin-left: -50px; 
-  transition: 0.4s ease-out;
-  position: relative;
-  left: 0px;
+/*test*/
+#blue {
+  stop-color:#cd2f2f; 
+  stop-opacity:1;
 }
 
-.card:not(:first-child) {
-    margin-left: -50px;
+#jaune {
+  stop-color:#c7cb2c;
+  stop-opacity:1;
 }
 
-.card:hover {
-  transform: translateY(-20px);
-  transition: 0.4s ease-out;
+#red {
+  stop-color:#2acbec;
+  stop-opacity:1;
 }
 
-.card:hover ~ .card {
-  position: relative;
-  left: 50px;
-  transition: 0.4s ease-out;
+/* Petite Déco Stylé */
+.prettyBar {
+  height: 10px;
+  /*background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);*/
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
 }
-
-.title {
-  color: white;
-  font-weight: 300;
-  display: flex;
-  flex: 1;
-}
-
-.bar {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  height: 5px;
-  width: 100px;
-}
-
-.emptybar {
-  background-color: #2e3033;
-  width: 100%;
-  height: 100%;
-}
-
-.filledbar {
-  position: absolute;
-  top: 0px;
-  z-index: 3;
-  width: 0px;
-  height: 100%;
-  background: rgb(0,154,217);
-  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
-  transition: 0.6s ease-out;
-}
-
-.card:hover .filledbar {
-  width: 100%;
-  transition: 0.4s ease-out;
-}
-
-.circle {
-  position: absolute;
-  top: 150px;
-  left: 30%;
-}
-
-svg {
-  fill: #17141d;
-  stroke-width: 2px;
-}
-
-.card:hover {
-  stroke-dashoffset: 100;
-  transition: 0.6s ease-out;
-} */
