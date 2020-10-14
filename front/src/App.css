@@ -144,7 +144,6 @@
 .circle-svg {
   display: block;
   margin: 10px auto;
-  max-height: 30vh;
 }
 .circle-svg text {
   text-align:center;
