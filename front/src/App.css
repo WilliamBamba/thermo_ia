@@ -120,6 +120,12 @@
 #cercle {
   display: flex;
   flex: 1;
+
+}
+
+#cercle-container {
+  display: flex;
+  flex: 1;
 }
 
 #tempEvolution {
@@ -140,6 +146,13 @@
   border-radius: 1em;
 }
 
+#phrase {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  margin-bottom: 35px;
+}
+
 /* Interface cercle */
 .circle-svg {
   display: block;
@@ -148,20 +161,8 @@
 .circle-svg text {
   text-align:center;
   color:white;
-  font-size:10px
 }
-.circle-svg path.percent {
-  stroke : url(#gradient);
-  fill: none;
-  stroke-width: 4;
-  stroke-linecap: round;
-  animation: progress 1s ease-out forwards;
-}
-.circle-svg path.around {
-    stroke: #2c3239;
-    fill: none;
-    stroke-width: 4;
-}
+
 
 @keyframes progress {
   0% {
@@ -185,16 +186,18 @@
   border-radius: 10px;
   box-shadow: 0rem 0 1rem #000;
 }
-.card:not(:first-child) {
-  margin-left: -50px;
+.card:not(:last-child) {
+  margin-right: -50px;
 }
 
 .card:hover {
   transform: translateY(-20px);
   transition: 0.4s ease-out;
+  z-index: 30 !important;
 }
 
 .card:hover ~ .card {
+  z-index: 30 !important;
   transition: 0.4s ease-out;
 }
 
@@ -232,22 +235,6 @@
   background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);*/
   background: rgb(42,203,236);
   background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
-}
-
-/*test*/
-#blue {
-  stop-color:#cd2f2f; 
-  stop-opacity:1;
-}
-
-#jaune {
-  stop-color:#c7cb2c;
-  stop-opacity:1;
-}
-
-#red {
-  stop-color:#2acbec;
-  stop-opacity:1;
 }
 
 /* Petite Déco Stylé */
