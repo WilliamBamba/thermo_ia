@@ -197,7 +197,6 @@
 }
 
 .card:hover ~ .card {
-  z-index: 30 !important;
   transition: 0.4s ease-out;
 }
 
