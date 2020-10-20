@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 fastapi = "*"
 uvicorn = "*"
-requests = "*"
+requests-async = "*"
 
 [requires]
 python_version = "3.8"

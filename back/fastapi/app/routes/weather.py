@@ -4,7 +4,7 @@ Date: 20-10-2020
 
 """
 from fastapi import APIRouter, Response, status
-import requests
+import requests_async as requests
 
 from .. import config
 
@@ -18,6 +18,6 @@ router = APIRouter()
 @router.get('/{city}')
 async def get_weather_forcast(city: str, response: Response):
     url = '{}?key={}&q={}&days={}'.format(config.weatherApi, config.apiKey, city, 1)
-    data = requests.get(url=url)
+    data = await requests.get(url=url)
     response.status_code = data.status_code
     return data.json()
