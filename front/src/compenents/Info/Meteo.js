@@ -28,14 +28,14 @@ export default ({store}) => {
                     len = len - 1;
                     return (
                         <div className='card' style={{zIndex:len}}>
-                            <h3 class="title">{hour.temp_c}°C</h3>
-                            <div class="bar">
-                                <div class="emptybar"></div>
-                                <div class="filledbar"></div>
+                            <h3 className="title">{hour.temp_c}°C</h3>
+                            <div className="bar">
+                                <div className="emptybar"></div>
+                                <div className="filledbar"></div>
                             </div>
                             <div className='imgInfo'>
                                 <img className='img' src={hour.condition.icon} alt="condition" />
-                                <div class="card-content">
+                                <div className="card-content">
                                     <p>{hour.time.split(' ')[1]}h</p>
                                 </div>
                             </div>

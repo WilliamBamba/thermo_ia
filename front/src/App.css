@@ -96,7 +96,7 @@
   flex: 1;
   padding-left: 1em;
   padding-right: 1em;
-  padding-bottom: 2em;
+  padding-bottom: 1em;
 }
 
 #meteo {
@@ -243,4 +243,35 @@
   background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);*/
   background: rgb(42,203,236);
   background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+}
+
+.containerGestion {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-minus {
+  cursor: pointer;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(42,203,236,1) 70%); 
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 50px;
+}
+
+.fa-plus {
+  cursor: pointer;
+  background:  rgba(205,47,47,1);
+  background: radial-gradient(circle,  rgba(205,47,47,1) 0%,  rgba(199,203,44,1) 70%); 
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 50px;
+}
+
+#compteur {
+  margin: 10px;
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

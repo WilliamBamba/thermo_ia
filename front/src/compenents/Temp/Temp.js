@@ -9,7 +9,7 @@ export default ({store}) => {
     return (
         <div id='temp'>
             <TempEvolution />
-            <TempGestion />
+            <TempGestion store={store} />
         </div>
     );
 };

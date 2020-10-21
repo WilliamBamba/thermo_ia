@@ -28,7 +28,7 @@ export default({store}) => {
             <div className='prettyBar' />
             <Parametres />
             <Info />
-            <Temp />
+            <Temp store={store}/>
             <div className='prettyBar' />
         </div>
     );
