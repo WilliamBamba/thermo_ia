@@ -8,8 +8,7 @@ class LedBlinker(Thread):
     def __init__(self, led, on: bool, lock: RLock):
         Thread.__init__(self)
         self.lock = lock
-        with self.lock:
-            self.led = led
+        self.led = led
         self.on = on
 
     def run(self):
