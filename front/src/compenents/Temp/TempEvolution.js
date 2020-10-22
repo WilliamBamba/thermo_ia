@@ -6,7 +6,7 @@ export default ({store}) => {
 
     return (
         <div id='tempEvolution'>
-            <p> Et alors ? </p>
+            <p class='TitreSection'> Evolution Température Intérieure </p>
         </div>
     );
 };

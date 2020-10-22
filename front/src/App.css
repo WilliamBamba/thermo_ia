@@ -44,52 +44,113 @@
 #root {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 #home {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: black;
+  background-color: ivory;
+  padding-left: 1em;
+  padding-bottom: 2em;
+  padding-right: 1em;
 }
 
 #param {
   display: flex;
-  background-color: cornsilk;
+  flex-direction: row;
+  margin: 1em;
+}
+
+#icon {
+  display: flex;
+  flex: 1;
+}
+
+#heure {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+}
+
+.TitreSection {
+  text-align: center;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
 }
 
 #info {
   display: flex;
   flex: 1;
-  background-color: crimson;
 }
 
 #temp {
   display: flex;
   flex: 1;
-  background-color: cyan;
 }
 
 #meteo {
   display: flex;
   flex: 1;
-  background-color: darkmagenta;
+  flex-direction: column;
 }
 
 #tempActuel {
   display: flex;
   flex: 1;
-  background-color: gold;
+  flex-direction: column;
+}
+
+#cercle {
+  display: flex;
+  flex: 1;
 }
 
 #tempEvolution {
   display: flex;
   flex: 1;
-  background-color: forestgreen;
+  flex-direction: column;
 }
 
 #tempGestion {
   display: flex;
   flex: 1;
-  background-color: orangered;
+  flex-direction: column;
+}
+
+/* Interface cercle */
+.circle-svg {
+  display: block;
+  margin: 10px auto;
+  max-height: 30vh;
+}
+.circle-svg text {
+  text-align:center;
+  color:black;
+  font-size:10px
+}
+.circle-svg path.percent {
+  stroke: #6f6fff;
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+.circle-svg path.around {
+    stroke: #c4c4c4;
+    fill: none;
+    stroke-width: 4;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100; 
+  }
 }

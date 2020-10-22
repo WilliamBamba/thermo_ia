@@ -6,7 +6,7 @@ export default ({store}) => {
 
     return (
         <div id='tempGestion'>
-            <p> Ca marchera pas </p>
+            <p class='TitreSection'> Température Souhaitée </p>
         </div>
     );
 };
