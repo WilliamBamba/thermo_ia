@@ -52,10 +52,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: ivory;
-  padding-left: 1em;
-  padding-bottom: 2em;
-  padding-right: 1em;
+  background-color: #151c24;
+  color: white;
 }
 
 #param {
@@ -89,26 +87,43 @@
 #info {
   display: flex;
   flex: 1;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 #temp {
   display: flex;
   flex: 1;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
 }
 
 #meteo {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 #tempActuel {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 #cercle {
+  display: flex;
+  flex: 1;
+
+}
+
+#cercle-container {
   display: flex;
   flex: 1;
 }
@@ -117,40 +132,146 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
 }
 
 #tempGestion {
   display: flex;
   flex: 1;
   flex-direction: column;
+  background-color: #1d2329;
+  margin: 5px;
+  border-radius: 1em;
+}
+
+#phrase {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  margin-bottom: 35px;
 }
 
 /* Interface cercle */
 .circle-svg {
   display: block;
   margin: 10px auto;
-  max-height: 30vh;
 }
 .circle-svg text {
   text-align:center;
-  color:black;
-  font-size:10px
+  color:white;
 }
-.circle-svg path.percent {
-  stroke: #6f6fff;
-  fill: none;
-  stroke-width: 4;
-  stroke-linecap: round;
-  animation: progress 1s ease-out forwards;
-}
-.circle-svg path.around {
-    stroke: #c4c4c4;
-    fill: none;
-    stroke-width: 4;
-}
+
 
 @keyframes progress {
   0% {
     stroke-dasharray: 0 100; 
   }
+}
+
+/* Carroussel Météo */
+ .container {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #17141d;
+  border-radius: 10px;
+  box-shadow: 0rem 0 1rem #000;
+}
+.card:not(:last-child) {
+  margin-right: -50px;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+  z-index: 30 !important;
+}
+
+.card:hover ~ .card {
+  transition: 0.4s ease-out;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  margin: 10px;
+  margin-bottom: 0;
+}
+
+.bar {
+  height: 5px;
+  margin: 10px;
+}
+
+.imgInfo{
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  max-width: 64px;
+  align-self: center;
+}
+
+.card-content {
+  color: white;
+  align-self: center;
+}
+
+.filledbar {
+  height: 5px;
+  border-radius: 1em;
+  /*background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);*/
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+}
+
+/* Petite Déco Stylé */
+.prettyBar {
+  height: 10px;
+  /*background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);*/
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+}
+
+.containerGestion {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-minus {
+  cursor: pointer;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(42,203,236,1) 70%); 
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 50px;
+}
+
+.fa-plus {
+  cursor: pointer;
+  background:  rgba(205,47,47,1);
+  background: radial-gradient(circle,  rgba(205,47,47,1) 0%,  rgba(199,203,44,1) 70%); 
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 50px;
+}
+
+#compteur {
+  margin: 10px;
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
