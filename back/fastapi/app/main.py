@@ -1,18 +1,24 @@
-from typing import Optional
 from fastapi import FastAPI
 
-from .routes import weather
+from app.routes import weather, profile
+from app.database import config as db_config, models
+
+models.Base.metadata.create_all(bind=db_config.engine)
+
+def get_db():
+    db = db_config.SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 
 app = FastAPI()
+app.state.get_db = get_db
+
+
 
 app.include_router(weather.router, prefix='/weather')
+app.include_router(profile.router, prefix='/profil')
 
 
-@app.get('/')
-async def read_root():
-    return {'Hello': 'World'}
-
-
-@app.get('/items/{item_id}')
-async def read_item(item_id: int, q: Optional[str] = None):
-    return {'item_id': item_id, 'q': q}

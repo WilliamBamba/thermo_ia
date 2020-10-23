@@ -4,9 +4,8 @@ from sqlalchemy.orm import relationship
 from .config import Base
 
 
-class Profile(Base):
-    __tablename__ = "profile"
+class Profil(Base):
+    __tablename__ = "profil"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    
