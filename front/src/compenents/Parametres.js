@@ -22,12 +22,19 @@ export default ({store}) => {
 
     setInterval(updateHeure, 1000);
 
-
-
-    return (
-        <div id='param'>
-            <i id='icon' className="fas fa-bars fa-lg"></i>
-            <p id='heure'>{hour}</p>
-        </div>
-    );
+    if(store.state.boolNavBar) {
+        return (
+            <div id='param'>
+                <i onClick={() => store.merge({boolNavBar: !store.state.boolNavBar})} id='icon' className="fas fa-arrow-left"></i>
+                <p id='heure'>{hour}</p>
+            </div>
+        );
+    } else {
+        return (
+            <div id='param'>
+                <i onClick={() => store.merge({boolNavBar: !store.state.boolNavBar})} id='icon' className="fas fa-bars fa-lg"></i>
+                <p id='heure'>{hour}</p>
+            </div>
+        );
+    }
 };
