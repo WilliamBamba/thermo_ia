@@ -1,11 +1,11 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+# from sqlalchemy.orm import relationship
 
-from .config import Base
+from app.database.config import Base
 
 
-class Profil(Base):
-    __tablename__ = "profil"
+class Profile(Base):
+    __tablename__ = "profile"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
+    name = Column(String) #, unique=True)

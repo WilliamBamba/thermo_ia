@@ -2,8 +2,11 @@ from app.database.models import Profile
 from pydantic import BaseModel
 
 
-class CreateProfil(BaseModel):
+class CreateProfile(BaseModel):
     name: str
 
-class Profil(CreateProfil):
+class Profile(CreateProfile):
     id: int
+
+    class Config:
+        orm_mode = True
