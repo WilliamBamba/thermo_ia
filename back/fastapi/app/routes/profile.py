@@ -1,3 +1,4 @@
+from app.database import models
 from typing import List
 
 from fastapi import APIRouter, Request, Depends, HTTPException
@@ -11,7 +12,7 @@ router = APIRouter()
 
 @router.get('/', response_model=List[schemas.Profile])
 def get_profiles(db: Session = Depends(config.get_db)):
-    return crud.get_all_profiles(db)
+    return crud.get_all(db, models.Profile)
 
 
 @router.get('/{profile_id}', response_model=schemas.Profile)
@@ -26,3 +27,16 @@ def get_profile(profile_id: int, db: Session = Depends(config.get_db)):
 def create_profile(profile: schemas.CreateProfile, db: Session = Depends(config.get_db)):
     return crud.create_profile(db, profile)
 
+
+
+@router.get('/{profile_id}/link/{option_id}')
+def link_option(profile_id: int, option_id: int, db: Session = Depends(config.get_db)):
+    # TODO: verify profile & option exists
+    crud.update_profile(db, profile_id, {'option_id': option_id})
+    
+
+@router.get('/{profile_id}/link/{agenda_id}')
+def link_agenda(profile_id: int, agenda_id: int, db: Session = Depends(config.get_db)):
+    # TODO: verify profile & agenda exists
+    crud.update_profile(db, profile_id, {'agenda_id': agenda_id})
+    
