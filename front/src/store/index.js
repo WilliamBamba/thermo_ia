@@ -1,5 +1,7 @@
 const initialState = {
     count: 23,
+    boolNavBar: false,
+    temp: 25,
 };
 
 

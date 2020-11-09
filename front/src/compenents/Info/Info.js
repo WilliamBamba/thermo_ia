@@ -9,7 +9,7 @@ export default ({store}) => {
     return (
         <div id='info'>
             <Meteo />
-            <TempActuel />
+            <TempActuel store={store}/>
         </div>
     );
 };

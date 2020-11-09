@@ -31,7 +31,7 @@ export default({store}) => {
                 <Navbar />
                 <div id='home'>
                     <Parametres store={store}/>
-                    <Info />
+                    <Info store={store}/>
                     <Temp store={store}/>
                 </div>
             </div>
@@ -43,7 +43,7 @@ export default({store}) => {
             <div id='home'>
                 <div className='prettyBar' />
                 <Parametres store={store}/>
-                <Info />
+                <Info store={store}/>
                 <Temp store={store}/>
                 <div className='prettyBar' />
             </div>
