@@ -23,6 +23,7 @@ def get_profile(profile_id: int, db: Session = Depends(config.get_db)):
     return profile
 
 
+# TODO: à modifier
 @router.post('/', response_model=schemas.Profile)
 def create_profile(profile: schemas.CreateProfile, db: Session = Depends(config.get_db)):
     return crud.create_profile(db, profile)
@@ -35,6 +36,8 @@ def link_option(profile_id: int, option_id: int, db: Session = Depends(config.ge
     crud.update_profile(db, profile_id, {'option_id': option_id})
     
 
+
+# TODO: à modifier
 @router.get('/{profile_id}/link/{agenda_id}')
 def link_agenda(profile_id: int, agenda_id: int, db: Session = Depends(config.get_db)):
     # TODO: verify profile & agenda exists

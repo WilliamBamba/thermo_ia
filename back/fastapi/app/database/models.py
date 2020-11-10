@@ -9,8 +9,15 @@ class Profile(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String) #, unique=True)
-    agenda_id = Column(Integer, ForeignKey('agenda.id'), nullable=False)
     option_id = Column(Integer, ForeignKey('option.id'), nullable=False)
+    # agenda_url = Column(String, nullable=False)
+    # absent_hours = Column(String, nullable=False) # [(debut, fin), (debut, fin)]
+
+
+    def refresh_agenda(self):
+        pass
+
+
 
 
 class Option(Base):
@@ -21,7 +28,7 @@ class Option(Base):
     name = Column(String, nullable=True)
 
 
-
+# TODO: à supprimer
 class Agenda(Base):
     __tablename__ = "agenda"
 
@@ -42,7 +49,7 @@ class Agenda(Base):
     ()
 
 """
-
+# TODO: à supprimer
 class Day(Base):
 
     __tablename__ = "day"

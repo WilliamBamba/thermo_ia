@@ -16,23 +16,25 @@ class Profile(CreateProfile):
     class Config:
         orm_mode = True
 
+
+# TODO: à supprimer
 class CreateDay(BaseModel):
     day: str
     absent_hours: str# formate "8:30-12,14-18" 
     agenda_id: int
 
-
+# TODO: à supprimer
 class Day(CreateDay):
     id: int
 
     class Config:
         orm_mode = True
 
-
+# TODO: à supprimer
 class CreateAgenda(BaseModel):
     name: str
 
-
+# TODO: à supprimer
 class Agenda(CreateAgenda):
 
     id: int
