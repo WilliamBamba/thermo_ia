@@ -27,7 +27,7 @@ export default ({store}) => {
             {forcast_by_hours.map(hour => {
                     len = len - 1;
                     return (
-                        <div className='card' style={{zIndex:len}}>
+                        <div className='card' style={{zIndex:len}} key={len}>
                             <h3 className="title">{hour.temp_c}°C</h3>
                             <div className="bar">
                                 <div className="emptybar"></div>
