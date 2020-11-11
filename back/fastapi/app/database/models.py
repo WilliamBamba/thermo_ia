@@ -4,6 +4,14 @@ from sqlalchemy.orm import relationship
 from app.database.config import Base
 
 
+class User(Base):
+    __tablename__ = "profile"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String) #, unique=True)
+    
+
+
 class Profile(Base):
     __tablename__ = "profile"
 
