@@ -12,7 +12,7 @@ export default ({store}) => {
 
     console.log(weather);
     // on prend un jour c'est le premier jour
-    const machin = "Machin";
+    const name = "Machin";
     const forcast_day = weather.forecast.forecastday[0];
     const forcast_by_hours = forcast_day.hour;
     let len = forcast_by_hours.length + 1;
@@ -21,7 +21,7 @@ export default ({store}) => {
 
     return (
         <div id='meteo'>
-            <p className='TitreSection'>Bonjour {machin}</p>
+            <p className='TitreSection'>Bonjour {name}</p>
             <p id="phrase"> Voici la température d'aujourd'hui à {weather.location.name}:</p>
             <div className='container'>
             {forcast_by_hours.map(hour => {
