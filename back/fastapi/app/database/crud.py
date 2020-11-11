@@ -25,6 +25,8 @@ def update_profile(db: Session, profile_id: int, values: dict):
 
     db.query(models.Profile).filter(models.Profile.id == profile_id).update(values)
 
+def get_option_by_id(db: Session, option_id: int):
+    return db.query(models.Option).filter(models.Option.id == option_id).first()
 
 
 
