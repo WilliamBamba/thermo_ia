@@ -5,7 +5,7 @@ from app.database.config import Base
 
 
 class User(Base):
-    __tablename__ = "profile"
+    __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String) #, unique=True)
@@ -13,11 +13,14 @@ class User(Base):
 
 
 class Profile(Base):
+
+
     __tablename__ = "profile"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String) #, unique=True)
     option_id = Column(Integer, ForeignKey('option.id'), nullable=False)
+    agenda_id = Column(Integer, ForeignKey('agenda.id'), nullable=False)
     # agenda_url = Column(String, nullable=False)
     # absent_hours = Column(String, nullable=False) # [(debut, fin), (debut, fin)]
 
