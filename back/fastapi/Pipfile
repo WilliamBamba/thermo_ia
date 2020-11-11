@@ -9,6 +9,8 @@ verify_ssl = true
 fastapi = "*"
 uvicorn = "*"
 requests-async = "*"
+sqlalchemy = "*"
+ics = "*"
 
 [requires]
 python_version = "3.8"
