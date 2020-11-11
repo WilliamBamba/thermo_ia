@@ -2,6 +2,8 @@ const initialState = {
     count: 23,
     boolNavBar: false,
     temp: 25,
+    modalCreationProfil: false,
+    modalProfil: false,
 };
 
 

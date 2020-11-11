@@ -317,18 +317,85 @@ ul {
   flex-direction: column;
 }
 
-li a {
-  display: flex;
-  flex: 1;
-  text-decoration: none;
-  justify-content: center;
-  color: white;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+
 
 /* Change the link color on hover */
-li a:hover {
+.buttonProfil:hover {
   background-color: #151c24;
   color: white;
+}
+
+.buttonProfil {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  background-color:  #1d2329;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+/* ************************************************
+                  Modal Profil
+************************************************* */
+
+
+#modalProfil {
+  position: fixed; /* Stay in place */
+  z-index: 35; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#modalCreation {
+  position: fixed; /* Stay in place */
+  z-index: 35; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  background-color: #1d2329;
+  margin: auto;
+  padding: 20px;
+  border-radius: 1em;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+  position: absolute;
+  top: 12%;
+  right: 12%;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

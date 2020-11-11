@@ -4,12 +4,23 @@ import React from 'react';
 
 export default ({store}) => {
 
-    return (
-        <div id='navbar'>
-            <p> Paramètres </p>
-            <ul className="menu">
-                <li><a href="#"> Agenda </a></li>
-            </ul>
-        </div>
-    );
+    /*<input className="ProfilRadio" type="radio"></input>*/
+    if(store.state.boolNavBar) {
+        return (
+            <div id='navbar'>
+                <p> Paramètres </p>
+                <ul className="menu">
+                    <li>
+                        <button onClick={() => store.merge({modalProfil: !store.state.modalProfil})} className="buttonProfil"> Profil Exemple </button>
+                    </li>
+                    <li>
+                        <button onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} id='CreationProfil' className="buttonProfil"> Création d'un Profil</button>
+                    </li>
+                </ul>
+            </div>
+        );
+    }
+    else {
+        return(<></>);
+    }
 };

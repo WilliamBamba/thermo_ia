@@ -113,14 +113,7 @@ export default ({store}) => {
                         <path d="M150 10 a120 120 0 0 1 103.9230 60"
                             fill="none" stroke="url(#linearColors1)" stroke-width="10" />
                         {jeFaisUnTest(store.state.temp)}
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                                                
                         <text x="50%" y="50%" dominant-baseline="center" text-anchor="middle" font-size="45" stroke="white" strokeWidth="4" >{store.state.temp}°C</text>
                     </svg>
                 </div>
