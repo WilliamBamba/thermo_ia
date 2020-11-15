@@ -5,30 +5,32 @@ from app.database.config import Base
 
 
 class User(Base):
+
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String) #, unique=True)
-    
 
 
 class Profile(Base):
 
-
     __tablename__ = "profile"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String) #, unique=True)
-    option_id = Column(Integer, ForeignKey('option.id'), nullable=False)
-    agenda_id = Column(Integer, ForeignKey('agenda.id'), nullable=False)
-    # agenda_url = Column(String, nullable=False)
-    # absent_hours = Column(String, nullable=False) # [(debut, fin), (debut, fin)]
+    name = Column(String)
+    time_table = Column(String, nullable=True) # (8-11:45) (12:45-17)
+    url_agenda = Column(String, nullable=True) # valide url pointing to a .ics celander
+    option_id = Column(Integer, ForeignKey('option.id'), nullable=True)
+
+
+    # input: (8-9:45) (10-11:45) (12:45-17)
+    # output: (8-11:45) (12:45-17)
+    def parse_agenda():
+        pass
 
 
     def refresh_agenda(self):
         pass
-
-
 
 
 class Option(Base):
@@ -39,40 +41,8 @@ class Option(Base):
     name = Column(String, nullable=True)
 
 
-# TODO: à supprimer
-class Agenda(Base):
-    __tablename__ = "agenda"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True)
-    profiles = relationship("Profile")
-    days = relationship("Day")
-
-""""
-
-    lun: (8:30-12:30,14-18)
-    mar: ()
-    mer: ()
-    jeu: ()
-    ven: ()
-    ()
-    ()
-    ()
-
-"""
-# TODO: à supprimer
-class Day(Base):
-
-    __tablename__ = "day"
-
-    id = Column(Integer, primary_key=True, index=True)
-    day = Column(String, nullable=True)
-    absent_hours = Column(String, nullable=False) # formate "8:30-12,14-18" 
-    agenda_id = Column(Integer, ForeignKey('agenda.id'), nullable=False)
-
-
-
 class SensorData(Base):
+
     __tablename__ = "sensor_data"
 
     id = Column(Integer, primary_key=True, index=True)

@@ -11,15 +11,15 @@ router = APIRouter()
 
 
 
-@router.post('/', response_model=schemas.Agenda)
-def create_agenda(agenda: schemas.CreateAgenda, db: Session = Depends(config.get_db)):
-    return crud.create_agenda(db, agenda)
+# @router.post('/', response_model=schemas.Agenda)
+# def create_agenda(agenda: schemas.CreateAgenda, db: Session = Depends(config.get_db)):
+#     return crud.create_agenda(db, agenda)
 
 
 
-@router.get('/', response_model=List[schemas.Agenda])
-def get_agendas(db: Session = Depends(config.get_db)):
-    return crud.get_all(db, models.Agenda)
+# @router.get('/', response_model=List[schemas.Agenda])
+# def get_agendas(db: Session = Depends(config.get_db)):
+#     return crud.get_all(db, models.Agenda)
 
 
 # @router.get('/{profile_id}', response_model=schemas.Profile)
