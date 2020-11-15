@@ -11,6 +11,7 @@ uvicorn = "*"
 requests-async = "*"
 sqlalchemy = "*"
 ics = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"
