@@ -27,7 +27,7 @@ def get_profile(profile_id: int, db: Session = Depends(config.get_db)):
 
 @router.post('/', response_model=schemas.Profile)
 def create_profile(profile: schemas.CreateProfile, db: Session = Depends(config.get_db)):
-    return crud.create_model(db, models.Profile, profile) 
+    return crud.create_model(db, models.Profile, profile)
 
 
 @router.put('/{profile_id}', response_model=schemas.Profile)

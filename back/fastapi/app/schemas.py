@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
-
+import datetime
 
 
 class CreateProfile(BaseModel):
@@ -24,4 +24,11 @@ class Profile(UpdateProfile):
 class CreateSensorData(BaseModel):
 
     temperature: int
+    created_at: Optional[datetime.datetime] = datetime.datetime.now()
 
+
+class SensorData(CreateSensorData):
+    id: int
+
+    class Config:
+        orm_mode = True

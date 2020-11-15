@@ -1,49 +1,22 @@
-from app.database import models
 from typing import List
+import datetime
 
-from fastapi import APIRouter, Request, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
+from app.database import models
 from app import schemas
 from app.database import crud, config
-from sqlalchemy.orm import Session
 
 router = APIRouter()
 
+#### TODO: mettre les bonnnes HTTP status
 
-@router.get('/')
-def get_current_temp(db: Session = Depends(config.get_db)):
-    return {'temp': 30}
-
-
-
+@router.get('/', response_model=List[schemas.SensorData])
+def get_sensor_data(db: Session = Depends(config.get_db)):
+    return crud.get_all(db, models.SensorData)
 
 
-
-@router.get('/{profile_id}', response_model=schemas.Profile)
-def get_profile(profile_id: int, db: Session = Depends(config.get_db)):
-    profile = crud.get_profile_by_id(db, profile_id)
-    if profile is None:
-        raise HTTPException(status_code=404, detail="Profile not found")
-    return profile
-
-
-# TODO: à modifier
-@router.post('/', response_model=schemas.Profile)
-def create_profile(profile: schemas.CreateProfile, db: Session = Depends(config.get_db)):
-    return crud.create_profile(db, profile)
-
-
-
-@router.get('/{profile_id}/link/{option_id}')
-def link_option(profile_id: int, option_id: int, db: Session = Depends(config.get_db)):
-    # TODO: verify profile & option exists
-    crud.update_profile(db, profile_id, {'option_id': option_id})
-    
-
-
-# TODO: à modifier
-@router.get('/{profile_id}/link/{agenda_id}')
-def link_agenda(profile_id: int, agenda_id: int, db: Session = Depends(config.get_db)):
-    # TODO: verify profile & agenda exists
-    crud.update_profile(db, profile_id, {'agenda_id': agenda_id})
-    
+@router.post('/', response_model=schemas.SensorData)
+def create_sensor_data(sensor_data: schemas.CreateSensorData, db: Session = Depends(config.get_db)):
+    return crud.create_model(db, models.SensorData, sensor_data) 

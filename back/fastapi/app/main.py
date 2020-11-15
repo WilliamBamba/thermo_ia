@@ -26,6 +26,6 @@ app.add_middleware(
 # app.include_router(agenda.router, prefix='/agenda')
 app.include_router(weather.router, prefix='/weather')
 app.include_router(profile.router, prefix='/profiles')
-# app.include_router(sensor.router, prefix='/sensor')
+app.include_router(sensor.router, prefix='/sensors')
 
 
