@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes import weather, profile, sensor
@@ -13,6 +13,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "*"
 ]
 
 app.add_middleware(
@@ -27,5 +28,7 @@ app.add_middleware(
 app.include_router(weather.router, prefix='/weather')
 app.include_router(profile.router, prefix='/profiles')
 app.include_router(sensor.router, prefix='/sensors')
+
+
 
 
