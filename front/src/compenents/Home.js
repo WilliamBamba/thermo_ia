@@ -5,8 +5,9 @@ import Navbar from './Navbar';
 import Parametres from './Parametres';
 import Info from './Info/Info';
 import Temp from './Temp/Temp';
-import ModalCreationProfil from './ModalCreationProfil';
-import ModalProfil from './ModalProfil';
+import ModalCreationProfil from './Modal/ModalCreationProfil';
+import ModalProfil from './Modal/ModalProfil';
+import ModalUser from './Modal/ModalUser';
 
 export default({store}) => {
     return (
@@ -20,6 +21,7 @@ export default({store}) => {
                 <Temp store={store}/>
                 <ModalCreationProfil store={store} />
                 <ModalProfil store={store} />
+                <ModalUser store={store} />
             </div>
         </div>
         <div className='prettyBar' />
