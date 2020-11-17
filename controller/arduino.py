@@ -1,14 +1,39 @@
 import pyfirmata
+import asyncio
+import websockets
 import time
-
 
 class ArduinoClient:
 
-    def __init__(self, serial_port: str, wc_server: str) -> None:
-        self.wc_server = wc_server
+    def __init__(self, serial_port: str, wc_server_url: str) -> None:
         self.serial_port = serial_port
+        self.wc_server_url = wc_server_url
+        
         self.arduino_device = None
         self.temp_sensor = None
+
+        self.red_led = None
+        self.green_led = None
+
+        self.connect()
+
+    
+    async def task(self):
+        while True:
+            try:
+                async with websockets.connect(self.wc_server_url) as wc_client:
+                    while True:
+                        time.sleep(10)
+                        temperature = self.read_temp_value()
+                        if temperature is None: continue
+                        data = {'temperature': temperature}
+                        print(data)
+                        await wc_client.send(str(data))
+            except Exception as e:
+                pass
+
+    def run(self):
+        asyncio.get_event_loop().run_until_complete(self.task())
 
     def connect(self):
         arduino = pyfirmata.Arduino(self.serial_port)
@@ -16,42 +41,23 @@ class ArduinoClient:
         acquisition = pyfirmata.util.Iterator(arduino)
         acquisition.start()
         self.temp_sensor = arduino.get_pin('a:0:i')
+        # TODO: ajouter les leds
 
     def read_temp_value(self):
+        max_temp = 125
         sensor_data = self.temp_sensor.read()
-        min_temp = -10
-        max_temp = 150
+        if sensor_data is None: return None
 
-        sensor_interval = abs(min_temp) + abs(max_temp)
-        sensor_data = float(sensor_data)
-        sensor_data *= 1024
+        sensor_data = float(sensor_data) * max_temp
+        return int(sensor_data)
 
-        val = sensor_data * sensor_interval
-        val += min_temp/2
-        return val
+
 
 
 if __name__ == "__main__":
-    
     serial_port = '/dev/cu.usbmodem14101'
+    wc_server_url ='ws://localhost:8000/sensors/exchange_data'
 
-    arduino = pyfirmata.Arduino(serial_port)
-    acquisition = pyfirmata.util.Iterator(arduino)
-    acquisition.start()
+    client = ArduinoClient(serial_port, wc_server_url)
 
-    sensor_temp = arduino.get_pin('a:0:i')
-
-    while True:
-        min_temp = -10
-        max_temp = 150
-        sensor_interval = abs(min_temp) + abs(max_temp)
-        sensor_data = sensor_temp.read()
-        if sensor_data is not None:
-            sensor_data = float(sensor_data) * 1024
-            # val = sensor_data * sensor_interval
-            # val += min_temp/2
-            print(sensor_data, '°C')
-            time.sleep(2)
-        else:
-            time.sleep(0.5)
-
+    client.run()

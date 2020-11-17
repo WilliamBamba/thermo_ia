@@ -9,7 +9,6 @@ async def hello():
         while True:
             temp = input("temperature: ")
             data = {'temperature': int(temp)}
-            
 
             await websocket.send(str(data))
             recv = await websocket.recv()
