@@ -8,21 +8,21 @@ export default ({store}) => {
     if(store.state.modalCreationProfil) {
         console.log('Modal Creation : ' + store.state.modalCreationProfil );
         return (
-            <div id='modalCreation'>
-                <div class="modal-content">
-                    <p className='TitreSection'> Création d'un Profil  </p>
-                    <div className="form">
-                        <form action="">
-                            <label for="Nom">Nom : </label>
-                            <input type="text" id="Nom" name="firstname" placeholder="Nom du Profil..."/>
-
-                            <label for="Ville">Ville : </label>
-                            <input type="text" id="Ville" name="lastname" placeholder="Ville où vous habitez..."/>
-                        
-                            <input type="submit" value="Création"/>
-                        </form>
+            <div id='modalProfil'>
+                <div className="modal-content">
+                    <div className="divJoli">
+                        <p className='TitreSection' id="titreModal"> Création Programme </p>
+                        <span onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} className="close">&times;</span>
                     </div>
-                    <span onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} className="close">&times;</span>
+                    <form>
+                        <label for="fname">Nom du Programme</label>
+                        <input type="text" id="fname" name="nom" />
+
+                        <label for="lname">URL de votre Agenda</label>
+                        <input type="text" id="agenda" name="agenda"/>
+                    
+                        <input type="submit" value="Submit"/>
+                    </form>
                 </div>
             </div>
         );

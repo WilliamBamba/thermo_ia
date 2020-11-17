@@ -11,8 +11,10 @@ export default ({store}) => {
     if(!(c.getCookie('User'))) {
         return (
             <div id='modalProfil'>
-                <div class="modal-content">
-                    <p className='TitreSection'> Création de l'utilisateur  </p>
+                <div className="modal-content">
+                    <div className="divJoli">
+                        <p className='TitreSection' id="titreModal"> Création de l'utilisateur  </p>
+                    </div>
                     <form>
                         <label for="fname">Nom</label>
                         <input type="text" id="fname" name="nom" />

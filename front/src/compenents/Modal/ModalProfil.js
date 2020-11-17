@@ -9,9 +9,11 @@ export default ({store}) => {
         console.log('Modal Profil : ' + store.state.modalProfil );
         return (
             <div id='modalProfil'>
-                <div class="modal-content">
-                    <span onClick={() => store.merge({modalProfil: !store.state.modalProfil})} className="close">&times;</span>
-                    <p className='TitreSection'> Petit Poney  </p>
+                <div className="modal-content">
+                    <div className="divJoli">
+                        <p className='TitreSection' id="titreModal"> Programme  </p>
+                        <span onClick={() => store.merge({modalProfil: !store.state.modalProfil})} className="close">&times;</span>
+                    </div>
                 </div>
             </div>
         );

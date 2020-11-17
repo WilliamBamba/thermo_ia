@@ -379,18 +379,18 @@ ul {
   margin: auto;
   padding: 20px;
   border-radius: 1em;
-  width: 80%;
+  width: 60%;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: white;
   float: right;
-  fontSize: 35px;
+  font-size: 35px;
   font-weight: bold;
   position: absolute;
-  top: 12%;
-  right: 12%;
+  top: 11%;
+  right: 21%;
 }
 
 .close:hover,
@@ -402,9 +402,12 @@ ul {
 
 /*Modal User*/
 input[type=text], select {
-  width: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -412,16 +415,52 @@ input[type=text], select {
 }
 
 input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+  color: White;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  text-shadow: #000 1px 1px;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 250px;
+  margin-right: 250px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  box-shadow: 0px 0px 15px #888888;
+  text-shadow: #000 1px 2px;
 }
+
+input[type=text]:hover {
+  box-shadow: 0px 0px 15px 1px  #888888;
+}
+
+input[type=text]:focus {
+  box-shadow: 0px 0px 15px 1px  #888888;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.divJoli {
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+  color: White;
+  font-size: 20px;
+  text-shadow: #000 1px 1px;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  border-radius: 1em 1em 0 0;
+  margin-bottom: 10px;
+}
+
