@@ -14,7 +14,11 @@ def get_model_by_id(db: Session, model_id: int, model):
 
 def update_model(db: Session, model_id: int, model, new_data: dict):
     db.query(model).filter(model.id == model_id).update(new_data)
+    db.commit()
 
+def delete_model(db: Session, model_id: int, model):
+    db.query(model).filter(model.id == model_id).delete()
+    db.commit()
 
 def create_model(db: Session, model, data):
     db_model = model(**data.dict())
