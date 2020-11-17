@@ -29,7 +29,6 @@ async def sensor_data_exchange(websocket: WebSocket, db: Session = Depends(confi
         while True:
             data = await websocket.receive_text()
             temp_dict = ast.literal_eval(data)
-            print(temp_dict)
             sensor_data = schemas.CreateSensorData(**temp_dict)
             crud.create_model(db, models.SensorData, sensor_data) 
 
