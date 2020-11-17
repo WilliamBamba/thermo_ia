@@ -1,4 +1,5 @@
 from typing import List
+import ast
 
 from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
@@ -27,6 +28,11 @@ async def sensor_data_exchange(websocket: WebSocket, db: Session = Depends(confi
     try:
         while True:
             data = await websocket.receive_text()
-            await websocket.send_json({"data": data})
+            temp_dict = ast.literal_eval(data)
+            print(temp_dict)
+            sensor_data = schemas.CreateSensorData(**temp_dict)
+            crud.create_model(db, models.SensorData, sensor_data) 
+
+            await websocket.send_json(sensor_data.json())
     except WebSocketDisconnect:
         pass

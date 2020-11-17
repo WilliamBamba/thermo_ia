@@ -18,7 +18,7 @@ class Profile(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    time_table = Column(String, nullable=True) # (8-11:45) (12:45-17)
+    time_table = Column(String, nullable=True) # "[8-11:45],[12:45-17]"
     url_agenda = Column(String, nullable=True) # valide url pointing to a .ics celander
     option_id = Column(Integer, ForeignKey('option.id'), nullable=True)
 
