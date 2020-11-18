@@ -5,6 +5,8 @@ import datetime
 
 class CreateProfile(BaseModel):
     name: str
+    city: str
+    wtemp: int
 
 
 class UpdateProfile(CreateProfile):

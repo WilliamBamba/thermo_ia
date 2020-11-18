@@ -4,13 +4,6 @@ from sqlalchemy.orm import relationship
 from app.database.config import Base
 
 
-class User(Base):
-
-    __tablename__ = "user"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String) #, unique=True)
-
 
 class Profile(Base):
 
@@ -18,6 +11,8 @@ class Profile(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
+    city = Column(String)
+    wtemp = Column(Integer, default=23)
     time_table = Column(String, nullable=True) # "[8-11:45],[12:45-17]"
     url_agenda = Column(String, nullable=True) # valide url pointing to a .ics celander
     option_id = Column(Integer, ForeignKey('option.id'), nullable=True)

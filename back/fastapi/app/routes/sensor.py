@@ -13,9 +13,14 @@ router = APIRouter()
 
 #### TODO: mettre les bonnnes HTTP status
 
+
 @router.get('/', response_model=List[schemas.SensorData])
 def get_sensor_data(db: Session = Depends(config.get_db)):
     return crud.get_all(db, models.SensorData)
+
+@router.get('/most_recent', response_model=schemas.SensorData)
+def get_most_recent_sensor_data(db: Session = Depends(config.get_db)):
+    return crud.get_most_recent_model(db, models.SensorData)
 
 
 @router.post('/', response_model=schemas.SensorData)
