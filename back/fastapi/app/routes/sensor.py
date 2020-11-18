@@ -1,6 +1,7 @@
 from typing import List
+import ast
 
-from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect, Request
 from sqlalchemy.orm import Session
 
 from app.database import models
@@ -8,6 +9,7 @@ from app import schemas
 from app.database import crud, config
 
 router = APIRouter()
+
 
 #### TODO: mettre les bonnnes HTTP status
 
@@ -27,6 +29,10 @@ async def sensor_data_exchange(websocket: WebSocket, db: Session = Depends(confi
     try:
         while True:
             data = await websocket.receive_text()
-            await websocket.send_json({"data": data})
+            temp_dict = ast.literal_eval(data)
+            sensor_data = schemas.CreateSensorData(**temp_dict)
+            crud.create_model(db, models.SensorData, sensor_data) 
+
+            await websocket.send_json(sensor_data.json())
     except WebSocketDisconnect:
         pass

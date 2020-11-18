@@ -7,9 +7,10 @@ async def hello():
 
     async with websockets.connect(uri) as websocket:
         while True:
-            name = input("What's your name? ")
+            temp = input("temperature: ")
+            data = {'temperature': int(temp)}
 
-            await websocket.send(name)
+            await websocket.send(str(data))
             recv = await websocket.recv()
             print(recv)
 
