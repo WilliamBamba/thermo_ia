@@ -1,7 +1,7 @@
-import { stringify } from "qs";
+// import { stringify } from "qs";
 import cookie from "./cookies";
 
-
+let stringify = (data) => JSON.stringify(data);
 
 let headers = {
     "Content-Type": "application/json"

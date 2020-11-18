@@ -8,7 +8,7 @@ export default ({store}) => {
 
     return (
         <div id='info'>
-            <Meteo />
+            <Meteo store={store} />
             <TempActuel store={store}/>
         </div>
     );

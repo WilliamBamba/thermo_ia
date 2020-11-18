@@ -15,10 +15,10 @@ export default ({store}) => {
                         <span onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} className="close">&times;</span>
                     </div>
                     <form>
-                        <label for="fname">Nom du Programme</label>
+                        <label htmlFor="fname">Nom du Programme</label>
                         <input type="text" id="fname" name="nom" />
 
-                        <label for="lname">URL de votre Agenda</label>
+                        <label htmlFor="lname">URL de votre Agenda</label>
                         <input type="text" id="agenda" name="agenda"/>
                     
                         <input type="submit" value="Submit"/>

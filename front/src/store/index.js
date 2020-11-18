@@ -4,6 +4,7 @@ const initialState = {
     temp: 25,
     modalCreationProfil: false,
     modalProfil: false,
+    profile: null
 };
 
 

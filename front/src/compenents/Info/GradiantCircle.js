@@ -7,28 +7,28 @@ function jeFaisUnTest(val) {
     let chunks = [];
 
     if(val >= 10) {
-        console.log('TEMP EN DESSOUS DE 8');
+        // console.log('TEMP EN DESSOUS DE 8');
         chunks.push(<path d="M253.9230 70 a120 120 0 0 1 0 120" fill="none" stroke="url(#linearColors2)" strokeWidth="10" key={chunks.length} />)
     }
 
 
     if( val >= 20) {
-        console.log('TEMP EN DESSUS DE 8 ET EN DESSOUS DE 16');
+        // console.log('TEMP EN DESSUS DE 8 ET EN DESSOUS DE 16');
         chunks.push(<path d="M253.9230 190 a120 120 0 0 1 -103.9230 60" fill="none" stroke="url(#linearColors3)" strokeWidth="10" key={chunks.length} />)
     }
 
     if(val >= 30) {
-        console.log('TEMP EN DESSUS DE 16 ET EN DESSOUS DE 24');
+        // console.log('TEMP EN DESSUS DE 16 ET EN DESSOUS DE 24');
         chunks.push(<path d="M150 250 a120 120 0 0 1 -103.9230 -60" fill="none" stroke="url(#linearColors4)" strokeWidth="10" key={chunks.length} />)
     }
 
     if(val >= 40) {
-        console.log('TEMP EN DESSUS DE 24 ET EN DESSOUS DE 32');
+        // console.log('TEMP EN DESSUS DE 24 ET EN DESSOUS DE 32');
         chunks.push(<path d="M46.077 190 a120 120 0 0 1 0 -120" fill="none" stroke="url(#linearColors5)" strokeWidth="10" key={chunks.length} />)
     }
 
     if( val >= 50) {
-        console.log('TEMP EN DESSUS DE 32');
+        // console.log('TEMP EN DESSUS DE 32');
         chunks.push(<path d="M46.077 70 a120 120 0 0 1 103.9230 -60" fill="none" stroke="url(#linearColors6)" strokeWidth="10" key={chunks.length} />)
     }
 
@@ -36,7 +36,7 @@ function jeFaisUnTest(val) {
 }
 
 
-export default ({ store }) => {
+export default ({ temp }) => {
 
     return (
         <svg className="circle-svg">
@@ -81,8 +81,8 @@ export default ({ store }) => {
             <path d="M150 10 a120 120 0 0 1 103.9230 60" fill="none" stroke="url(#linearColors1)" strokeWidth="10" />
 
 
-            {jeFaisUnTest(store.state.temp)}
-            <text x="50%" y="50%" dominantBaseline="center" textAnchor="middle" fontSize="45" stroke="white" strokeWidth="4" >{store.state.temp}°C</text>
+            {jeFaisUnTest(temp)}
+            <text x="50%" y="50%" dominantBaseline="center" textAnchor="middle" fontSize="45" stroke="white" strokeWidth="4" >{temp}°C</text>
         </svg>
 
     );
