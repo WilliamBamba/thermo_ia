@@ -1,7 +1,7 @@
 from typing import List
 import ast
 
-from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect, Request
 from sqlalchemy.orm import Session
 
 from app.database import models
@@ -9,6 +9,7 @@ from app import schemas
 from app.database import crud, config
 
 router = APIRouter()
+
 
 #### TODO: mettre les bonnnes HTTP status
 
