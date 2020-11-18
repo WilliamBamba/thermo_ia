@@ -24,23 +24,28 @@ class ArduinoClient:
                 async with websockets.connect(self.wc_server_url) as wc_client:
                     while True:
                         time.sleep(10)
-                        temperature = self.read_temp_value()
-                        if temperature is None: continue
-                        data = {'temperature': temperature}
+                        # temperature = self.read_temp_value()
+                        # if temperature is None: continue
+                        # data = {'temperature': temperature}
+                        data = {'temperature': 45}
                         print(data)
                         await wc_client.send(str(data))
             except Exception as e:
                 pass
 
     def run(self):
-        asyncio.get_event_loop().run_until_complete(self.task())
+        loop = asyncio.get_event_loop()
+        loop.set_debug(True)
+        loop.run_until_complete(self.task())
+        loop.close()
 
     def connect(self):
-        arduino = pyfirmata.Arduino(self.serial_port)
-        self.arduino_device = arduino
-        acquisition = pyfirmata.util.Iterator(arduino)
-        acquisition.start()
-        self.temp_sensor = arduino.get_pin('a:0:i')
+        pass
+        # arduino = pyfirmata.Arduino(self.serial_port)
+        # self.arduino_device = arduino
+        # acquisition = pyfirmata.util.Iterator(arduino)
+        # acquisition.start()
+        # self.temp_sensor = arduino.get_pin('a:0:i')
         # TODO: ajouter les leds
 
     def read_temp_value(self):
