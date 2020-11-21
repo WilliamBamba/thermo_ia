@@ -40,15 +40,18 @@ export default ({store}) => {
                         <p className='TitreSection' id="titreModal"> Création de l'utilisateur  </p>
                     </div>
                     <form onSubmit={(e) => submitProfileCreation(e, store)}>
-
-                        <label htmlFor="lname">Prénom</label>
-                        <input type="text" ref={prenom} id="lname" name="prenom" required/>
-
-                        <label htmlFor="lname">Temperature</label>
-                        <input type="number" ref={temp} id="lname" name="temp" required/>
-
+                        <div id='input'>
+                            <div className='inputBlock'>
+                                <label htmlFor="lname">Prénom</label>
+                                <input type="text" ref={prenom} id="lname" name="prenom" placeholder="Prénom.." required/>
+                            </div>
+                            <div className='inputBlock'>
+                                <label htmlFor="lname">Temperature</label>
+                                <input type="number" ref={temp} id="lname" name="temp" value="23" required/>
+                            </div>
+                        </div>
                         <label htmlFor="lname">Lieu où vous habitez</label>
-                        <input type="text" ref={city} id="lieu" name="ville" placeholder="lyon.." required />
+                        <input type="text" ref={city} id="lieu" name="ville" placeholder="Lyon.." required />
 
                         <input type="submit" value="Demarrer"/>
                     </form>
