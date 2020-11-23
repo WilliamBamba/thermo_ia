@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 class Environment:
     def __init__(self, Tint, Tvoulue , Text, agenda):
@@ -38,7 +38,10 @@ class Environment:
 
 
     def user_in_house(self):
-        return True
+
+        x = datetime.now()
+
+        return False
 
     def update(self):
         x = input('Changer temperature voulue ?')
