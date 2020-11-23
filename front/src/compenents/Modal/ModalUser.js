@@ -58,7 +58,13 @@ export default ({store}) => {
     }
     else {
         store.once(() => {
-            store.merge({'profile': c.getProfile()});
+            let profile = c.getProfile();
+            fetch.getData(config.server + config.routes.profile.get +  profile.id)
+                 .then(r => r.json())
+                 .then(profile_db => {
+                    c.setCookie('profile', JSON.stringify(profile_db), 1);
+                    store.merge({'profile': c.getProfile()});
+                 })
             // store.merge({'temp': c.getProfile().ctemp});
             console.log(c.getProfile());
         });

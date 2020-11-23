@@ -7,7 +7,8 @@ module.exports.routes = {
         get: '/sensors/'
     }, 
     profile: {
-        post: '/profiles/'
+        post: '/profiles/',
+        get: '/profiles/'
     }
 };
 

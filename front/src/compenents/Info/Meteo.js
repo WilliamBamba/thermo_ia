@@ -8,13 +8,14 @@ import offline_weather from '../../data/weather';
 
 
 
-async function fetchMeteo(setW) {
+async function fetchMeteo(setW, city) {
     try {
-        let w = await fetch.getData(config.server + config.routes.weather.get + 'lyon')
+        let w = await fetch.getData(config.server + config.routes.weather.get + city)
                           .then(r => r.json());
         setW(w);
-        console.log(w);
+        // console.log(w);
     } catch (error) {
+        alert('err meteo');
         setW(offline_weather);
     }
 }
@@ -28,10 +29,11 @@ export default ({store}) => {
 
     // console.log(weather);
     let [weather, setWeather] = useState(offline_weather);
-    // setWeather(offline_weather);
-    // weather = offline_weather;
-    store.once(() => fetchMeteo(setWeather));
-    // fetchMeteo(weather);
+    let [city, setCity] = useState('lyon');
+    let frist = true;
+    store.once(() => fetchMeteo(setWeather, city));
+
+
     // on prend un jour c'est le premier jour
     // const name = "Machin";
     const forcast_day = weather.forecast.forecastday[0];
@@ -44,6 +46,10 @@ export default ({store}) => {
         let name = 'No Name'
         try {
             name = store.state.profile.name
+            if (frist) {
+                frist = false;
+                fetchMeteo(setWeather, store.state.profile.city)
+            }
         } catch (error) {
             name = 'Name Err'
         }

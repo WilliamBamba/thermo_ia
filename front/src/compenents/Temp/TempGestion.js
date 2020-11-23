@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from 'react';
 import fetch from '../../helpers/fetch';
+import config from '../../config';
 
 
 export default ({store}) => {
@@ -9,8 +10,11 @@ export default ({store}) => {
         let profile = store.state.profile;
         profile.wtemp += by;
         // TODO: fetch.put update profile dans la db
-        store.merge({'profile': profile});
-        console.log(profile);
+        fetch.putData(config.server + config.routes.profile.post + profile.id, profile)
+             .then(r => r.json())
+             .then(profile_db => {
+                store.merge({'profile': profile_db})
+             })
     }
 
     function getWtemp(store) {
