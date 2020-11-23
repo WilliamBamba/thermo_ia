@@ -27,10 +27,9 @@ export default ({store}) => {
                 c.setCookie('profile', JSON.stringify(profile_db), 1);
                 console.log(profile_db);
                 store.merge({'profile': profile_db});
+                window.location.href = '/'
              });
     }
-
-    // c.setCookie('profile', null, 0);
 
     if((!c.getCookie('profile'))) {
         return (

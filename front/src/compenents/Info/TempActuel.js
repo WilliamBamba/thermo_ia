@@ -11,12 +11,12 @@ async function fetchCurrentTemperature(setTemp) {
 
     let data = await fetch.getData(config.server + config.routes.sensor.get + 'most_recent')
         .then(res => res.json());
-        console.log('update temp');
+        console.log('update temp', data);
         if (data) setTemp(data.temperature);
 }
 
 function refreshCurrentTemp(setTemp) {
-    setInterval(() => fetchCurrentTemperature(setTemp), 1000 * 30);
+    setInterval(() => fetchCurrentTemperature(setTemp), 1000 * 10);
 }
 
 
