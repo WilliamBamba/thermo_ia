@@ -1,27 +1,58 @@
 /*import { useState } from "react";*/
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import weather from '../../data/weather';
-// ça juste un échatillon le serveur il repond ce type de donné
+import config from '../../config';
+import fetch from '../../helpers/fetch';
+import offline_weather from '../../data/weather';
+import cookie from '../../helpers/cookies';
+
+
+
+function fetchMeteo(setWeather, city) {
+    
+    try {
+        fetch.getData(config.server + config.routes.weather.get + city)
+             .then(r => r.json())
+             .then(w => setWeather(w));
+    } catch (error) {
+        alert('database connection error');
+        setWeather(offline_weather);
+    }
+}
+
 
 export default ({store}) => {
 
-    // TODO: il faut convertir en AM PM à 0-24h
 
-    /* <p>sunrise: {forcast_day.astro.sunrise} sunset: {forcast_day.astro.sunset}</p>*/
+    let [weather, setWeather] = useState(offline_weather);
+    let defaultCity = 'lyon';
+    let profile = cookie.getProfile();
+    if (profile) defaultCity = profile.city;
+    let [city, setCity] = useState(defaultCity);
 
-    console.log(weather);
+    useEffect(() => fetchMeteo(setWeather, city), [city]);
+
+
     // on prend un jour c'est le premier jour
-    const name = "Machin";
     const forcast_day = weather.forecast.forecastday[0];
-    const forcast_by_hours = forcast_day.hour;
+    const forcast_by_hours = forcast_day.hour.filter((v, i, arr) => i % 3 === 0 || i === arr.length - 1);
     let len = forcast_by_hours.length + 1;
 
     // regardes le format
 
+    function getName(store) {
+        let name = 'No Name'
+        try {
+            name = store.state.profile.name
+        } catch (error) {
+            name = 'Name Err'
+        }
+        return name;
+    }
+
     return (
         <div id='meteo'>
-            <p className='TitreSection'>Bonjour {name}</p>
+            <p className='TitreSection'>Bonjour {getName(store)}</p>
             <p id="phrase"> Voici la température d'aujourd'hui à {weather.location.name}:</p>
             <div className='container'>
             {forcast_by_hours.map(hour => {

@@ -7,10 +7,12 @@ verify_ssl = true
 
 [packages]
 fastapi = "*"
-uvicorn = "*"
 requests-async = "*"
 sqlalchemy = "*"
 ics = "*"
+pytest = "*"
+uvicorn = "*"
+websockets = "*"
 
 [requires]
 python_version = "3.8"

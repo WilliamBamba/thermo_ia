@@ -1,13 +1,15 @@
 from app.database import models
 from typing import List
 
-from fastapi import APIRouter, Request, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from app import schemas
 from app.database import crud, config
 from sqlalchemy.orm import Session
 
 router = APIRouter()
+
+#### TODO: mettre les bonnnes HTTP status
 
 
 @router.get('/', response_model=List[schemas.Profile])
@@ -17,35 +19,38 @@ def get_profiles(db: Session = Depends(config.get_db)):
 
 @router.get('/{profile_id}', response_model=schemas.Profile)
 def get_profile(profile_id: int, db: Session = Depends(config.get_db)):
-    profile = crud.get_profile_by_id(db, profile_id)
+    profile = crud.get_model_by_id(db, profile_id, models.Profile)
     if profile is None:
         raise HTTPException(status_code=404, detail="Profile not found")
     return profile
 
 
-# TODO: à modifier
 @router.post('/', response_model=schemas.Profile)
 def create_profile(profile: schemas.CreateProfile, db: Session = Depends(config.get_db)):
-    return crud.create_profile(db, profile)
+    return crud.create_model(db, models.Profile, profile)
 
 
+@router.put('/{profile_id}', response_model=schemas.Profile)
+def update_profile(profile_id: int, new_profile: schemas.UpdateProfile , db: Session = Depends(config.get_db)):
+    profile = crud.get_model_by_id(db, profile_id, models.Profile)
 
-@router.get('/{profile_id}/link/{option_id}')
-def link_option(profile_id: int, option_id: int, db: Session = Depends(config.get_db)):
-    profile = crud.get_profile_by_id(db, profile_id)
     if profile is None:
         raise HTTPException(status_code=404, detail="Profile not found")
-    option = crud.get_option_by_id(db, option_id)
-    if option is None:
-        raise HTTPException(status_code=404, detail="Option not found")    
 
-    crud.update_profile(db, profile_id, {'option_id': option_id})
-    
+    # TODO: refresh time_table from agenda url if provided
+
+    crud.update_model(db, profile_id, models.Profile, new_profile)
+    return crud.get_model_by_id(db, profile_id, models.Profile)
 
 
-# TODO: à modifier
-@router.get('/{profile_id}/link/{agenda_id}')
-def link_agenda(profile_id: int, agenda_id: int, db: Session = Depends(config.get_db)):
-    # TODO: verify profile & agenda exists
-    crud.update_profile(db, profile_id, {'agenda_id': agenda_id})
-    
+@router.delete('/{profile_id}')
+def delete_profile(profile_id: int, db: Session = Depends(config.get_db)):
+    profile = crud.get_model_by_id(db, profile_id, models.Profile)
+
+    if profile is None:
+        raise HTTPException(status_code=404, detail="Profile not found")
+
+    # TODO: refresh time_table from agenda url if provided
+
+    crud.delete_model(db, profile_id, models.Profile)
+    return 

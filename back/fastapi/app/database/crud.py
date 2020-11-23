@@ -1,5 +1,6 @@
 from app.routes import profile
 from sqlalchemy.orm import Session
+from sqlalchemy import desc
 
 from . import models
 from app import schemas
@@ -8,31 +9,23 @@ from app import schemas
 def get_all(db: Session, model):
     return db.query(model).all()
 
+def get_model_by_id(db: Session, model_id: int, model):
+    return db.query(model).filter(model.id == model_id).first()
 
-def get_profile_by_id(db: Session, profile_id: int):
-    return db.query(models.Profile).filter(models.Profile.id == profile_id).first()
+def get_most_recent_model(db: Session, model):
+    return db.query(model).order_by(desc('created_at')).first()
 
-
-def create_profile(db: Session, profil: schemas.CreateProfile):
-    db_profil = models.Profile(**profil.dict())
-    db.add(db_profil)
+def update_model(db: Session, model_id: int, model, new_data: dict):
+    db.query(model).filter(model.id == model_id).update(new_data)
     db.commit()
-    db.refresh(db_profil)
-    return db_profil
 
-
-def update_profile(db: Session, profile_id: int, values: dict):
-
-    db.query(models.Profile).filter(models.Profile.id == profile_id).update(values)
-
-def get_option_by_id(db: Session, option_id: int):
-    return db.query(models.Option).filter(models.Option.id == option_id).first()
-
-
-
-def create_agenda(db: Session, agenda: schemas.CreateAgenda):
-    db_agenda = models.Agenda(**agenda.dict())
-    db.add(db_agenda)
+def delete_model(db: Session, model_id: int, model):
+    db.query(model).filter(model.id == model_id).delete()
     db.commit()
-    db.refresh(db_agenda)
-    return db_agenda
+
+def create_model(db: Session, model, data):
+    db_model = model(**data.dict())
+    db.add(db_model)
+    db.commit()
+    db.refresh(db_model)
+    return db_model

@@ -8,4 +8,13 @@ const getCookie = (cname) => {
     return Cookies.get(cname);
 }
 
-export default { setCookie, getCookie };
+
+const getProfile = () => {
+    const profile = getCookie('profile');
+
+    if (!profile) return false;
+
+    return JSON.parse(profile);
+}
+
+export default { setCookie, getCookie, getProfile };

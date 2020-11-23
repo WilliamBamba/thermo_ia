@@ -287,7 +287,7 @@
 
 #compteur {
   margin: 10px;
-  fontSize: 50px;
+  font-size: 50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -379,18 +379,18 @@ ul {
   margin: auto;
   padding: 20px;
   border-radius: 1em;
-  width: 80%;
+  width: 60%;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: white;
   float: right;
-  fontSize: 35px;
+  font-size: 35px;
   font-weight: bold;
   position: absolute;
-  top: 12%;
-  right: 12%;
+  top: 11%;
+  right: 21%;
 }
 
 .close:hover,
@@ -398,4 +398,99 @@ ul {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+/*Modal User*/
+input[type=text], select {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 12px 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+input[type=submit] {
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+  color: White;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  text-shadow: #000 1px 1px;
+  padding: 14px 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 250px;
+  margin-right: 250px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=number], select {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 12px 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  flex: 1;
+  -moz-appearance: textfield;
+}
+
+input[type=submit]:hover {
+  box-shadow: 0px 0px 15px #888888;
+  text-shadow: #000 1px 2px;
+}
+
+input[type=text]:hover, input[type=number]:hover {
+  box-shadow: 0px 0px 15px 1px  #888888;
+}
+
+input[type=text]:focus, input[type=number]:focus {
+  box-shadow: 0px 0px 15px 1px  #888888;
+}
+
+#input{
+  display: flex;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.divJoli {
+  background: rgb(42,203,236);
+  background: linear-gradient(90deg, rgba(42,203,236,1) 0%, rgba(199,203,44,1) 59%, rgba(205,47,47,1) 100%);
+  color: White;
+  font-size: 20px;
+  text-shadow: #000 1px 1px;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  border-radius: 1em 1em 0 0;
+  margin-bottom: 10px;
 }

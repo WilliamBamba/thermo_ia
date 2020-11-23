@@ -4,6 +4,7 @@ const initialState = {
     temp: 25,
     modalCreationProfil: false,
     modalProfil: false,
+    profile: null
 };
 
 
@@ -15,7 +16,6 @@ export default (storage, setStore, globalState) => {
     };
 
     const onces = [];
-    const repetes = [];
 
     store.merge = (obj) => {
         let newState = { ...store.state, ...obj };
@@ -31,9 +31,6 @@ export default (storage, setStore, globalState) => {
         if (globalState.frist) {
             globalState.frist = false;
             onces.forEach(f => f());
-            repetes.forEach(e => {
-                setInterval(e.f, e.interval);
-            })
         }
         
     }
