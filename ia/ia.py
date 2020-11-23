@@ -55,14 +55,8 @@ class Agent:
                 self._action = self.action_pref
                 outcome = self.outcome_pref
 
-
-
-
-
         if self.is_board() or self.hedonist_table[self._action][outcome] < 0:
             self.changeaction(outcome)
-
-
 
         if self._action not in self.memoire.keys():
             self.memoire[self._action] = outcome

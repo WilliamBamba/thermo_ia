@@ -4,6 +4,7 @@ from ia import Agent
 
 def traduction(action) :
 
+    # ICI ON VA ENVOYER A LA PLACE DU RETURN
     if action == 0 :
         return "0 Chauffage ON"
     elif action == 1 :
@@ -42,11 +43,11 @@ def world(agent, environment):
         print("Nombres d'actions pour finir : "+ str(count))
 good_anticipe_count = 0
 
-e = Environment(19,21,18)
-e2 = Environment(28,21,17)
-e3 = Environment(28,21,17)
-e1 = Environment(19,26,18)
-hedonist_table2=[[2,-2],[2,-2],[3,-1]]
+e = Environment(19,21,18,[1,2])
+#e2 = Environment(28,21,17)
+#e3 = Environment(28,21,17)
+#e1 = Environment(19,26,18)
+hedonist_table2=[[2,-2,-2],[2,-2,-2],[3,-1,4]]
 
 
 a = Agent(hedonist_table2, 4)
@@ -54,12 +55,3 @@ a = Agent(hedonist_table2, 4)
 
 
 world(a, e)
-print(" |||||||||||||||||||| DEUXIEME ITERATION |||||||||||||")
-#world(a, e2)
-print(" |||||||||||||||||||| TROISIEME ITERATION |||||||||||||")
-#world(a,e1)
-print(" |||||||||||||||||||| QUATRIEME ITERATION |||||||||||||")
-# PAS OUBLIER DE REMETTRE C DEUX VALEURS COMME DE BASE QUAND ON UPDATE LENVIRONNEMENT
-#e2.lastTemp =0
-#e2.temperatureInterieur = 28
-#world(a, e2)

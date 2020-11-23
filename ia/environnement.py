@@ -1,11 +1,11 @@
 
 
 class Environment:
-    def __init__(self, Tint, Tvoulue , Text):
+    def __init__(self, Tint, Tvoulue , Text, agenda):
         self.temperatureExterieur = Text
         self.temperatureInterieur = Tint
         self.temperatureVoulue = Tvoulue
-        #self._agenda = agenda
+        self._agenda = agenda
         self.lastTemp = 0
         self.diff = 0
         self.lastdiff = 0
@@ -24,12 +24,21 @@ class Environment:
                 self.set_tInt(self.get_tInt()+0.5)
             elif diff_ext_int < 0 :
                 self.set_tInt(self.get_tInt()-0.5)
+
+        if(self.user_in_house()):
+            return 2
+
         if self.amelioration() :
             #   print("Amelioration")
+
             return 0
         else :
             #  print("Pas d'amelioration ")
             return 1
+
+
+    def user_in_house(self):
+        return True
 
     def update(self):
         x = input('Changer temperature voulue ?')
