@@ -22,24 +22,28 @@ class Agent:
         self.contexte = _contexte
         self._categorie = self.categorie(_contexte)
         self.pref_action_count = 0
+
+        if self.searchSemblable() == False :
+            self.action_pref = 2
+            self.outcome_pref = 0
+            self._action = 2
+
+    def searchSemblable(self):
+
         if str(self.contexte) in self.bestactions :
             self.action_pref = self.bestactions[str(self.contexte)][0]
             self.outcome_pref = self.bestactions[str(self.contexte)][1]
             self._action = self.action_pref
+            return True
         else :
-            trouver = False
             for key, values in self.bestactions.items():
                 if (values[2] == self._categorie) :
                     print(" Semblable trouver : "+ str(key))
                     self.action_pref = self.bestactions[str(key)][0]
                     self.outcome_pref = self.bestactions[str(key)][1]
                     self._action = self.action_pref
-                    trouver = True
-
-            if trouver == False :
-                self.action_pref = 2
-                self.outcome_pref = 0
-                self._action = 2
+                    return True
+        return False
 
 
     def action(self, outcome):
@@ -137,4 +141,4 @@ class Agent:
         if not str(self.contexte) in self.bestactions:
             print(" CATEGORIE : " + self.categorie(self.contexte))
             self.bestactions[str(self.contexte)]=[self.action_pref,self.outcome_pref,self._categorie]
-        print(self.bestactions[str(self.contexte)])
+            print(self.bestactions[str(self.contexte)])
