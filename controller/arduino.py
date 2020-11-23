@@ -21,27 +21,7 @@ class ArduinoClient:
 
         self.connect()
 
-    
-    async def task(self):
-        pass
-        # loop = asyncio.get_event_loop()
-        # loop.set_debug(True)
-        # loop.run_until_complete(self.task())
-        # loop.close()
-        # while True:
-        #     try:
-        #         async with websockets.connect(self.wc_server_url) as wc_client:
-        #             while True:
-        #                 time.sleep(10)
-        #                 # temperature = self.read_temp_value()
-        #                 # if temperature is None: continue
-        #                 # data = {'temperature': temperature}
-        #                 data = {'temperature': 45}
-        #                 print(data)
-        #                 await wc_client.send(str(data))
-        #     except Exception as e:
-        #         pass
-    
+
     # 0 (0, 0)
     # 0 (1, 0)
     # 0 (0, 1)
