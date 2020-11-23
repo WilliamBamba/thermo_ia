@@ -287,7 +287,7 @@
 
 #compteur {
   margin: 10px;
-  fontSize: 50px;
+  font-size: 50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -412,6 +412,7 @@ input[type=text], select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  flex: 1;
 }
 
 input[type=submit] {
@@ -432,19 +433,49 @@ input[type=submit] {
   cursor: pointer;
 }
 
+input[type=number], select {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 12px 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  flex: 1;
+  -moz-appearance: textfield;
+}
+
 input[type=submit]:hover {
   box-shadow: 0px 0px 15px #888888;
   text-shadow: #000 1px 2px;
 }
 
-input[type=text]:hover {
+input[type=text]:hover, input[type=number]:hover {
   box-shadow: 0px 0px 15px 1px  #888888;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=number]:focus {
   box-shadow: 0px 0px 15px 1px  #888888;
 }
 
+#input{
+  display: flex;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 form {
   display: flex;
@@ -463,4 +494,3 @@ form {
   border-radius: 1em 1em 0 0;
   margin-bottom: 10px;
 }
-
