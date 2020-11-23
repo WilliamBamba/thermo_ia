@@ -5,24 +5,25 @@ class Environment:
         self.temperatureExterieur = Text
         self.temperatureInterieur = Tint
         self.temperatureVoulue = Tvoulue
+        #self._agenda = agenda
         self.lastTemp = 0
         self.diff = 0
         self.lastdiff = 0
 
     def outcome(self, action):
-        diffExtInt = self.temperatureExterieur - self.temperatureInterieur
-        self.lastTemp = self.temperatureInterieur
+        diff_ext_int = self.get_tExt() - self.get_tInt()
+        self.set_lastTemp(self.get_tInt())
         if action == 0:
-            self.temperatureInterieur+=0.5
+            self.set_tInt(self.get_tInt()+0.5)
 
         elif action == 1:
-            self.temperatureInterieur-=0.5
+            self.set_tInt(self.get_tInt()-0.5)
 
         else :
-            if diffExtInt > 0 : # Plus chaud dehors que dedans
-                self.temperatureInterieur+=0.5
-            elif diffExtInt < 0 :
-                self.temperatureInterieur-=0.5
+            if diff_ext_int > 0 : # Plus chaud dehors que dedans
+                self.set_tInt(self.get_tInt()+0.5)
+            elif diff_ext_int < 0 :
+                self.set_tInt(self.get_tInt()-0.5)
         if self.amelioration() :
             #   print("Amelioration")
             return 0
@@ -30,17 +31,64 @@ class Environment:
             #  print("Pas d'amelioration ")
             return 1
 
+    def update(self):
+        x = input('Changer temperature voulue ?')
+        if x == 'oui' :
+            new_temp = input('Entrer la nouvelle temperature:')
+            self.set_tVoulue(int(new_temp))
+            return True
+        else :
+            return False
 
     def amelioration(self):
         #26-22 26-23
-        self.update()
+        self.update_diff()
         # print(" AMELIORATION ? : " + str(self.lastdiff - self.diff))
-        if self.lastdiff > self.diff :
+        if self.get_lastdiff() > self.get_diff() :
             return True
         else:
             return False
 
-    def update(self) :
-        self.diff = abs(self.temperatureVoulue - self.temperatureInterieur)
-        self.lastdiff = abs(self.temperatureVoulue - self.lastTemp)
+    def update_diff(self) :
+        self.set_diff(abs(self.get_tVoulue() - self.get_tInt()))
+        self.set_lastdiff(abs(self.get_tVoulue() - self.get_lastTemp()))
+
+
+    def get_tInt(self):
+        return self.temperatureInterieur
+
+    def set_tInt(self, t):
+        self.temperatureInterieur = t
+
+    def get_tExt(self):
+        return self.temperatureExterieur
+
+    def set_tExt(self, t):
+        self.temperatureExterieur = t
+
+    def get_tVoulue(self):
+        return self.temperatureVoulue
+
+    def set_tVoulue(self, t):
+        self.temperatureVoulue = t
+
+    def get_diff(self):
+        return self.diff
+
+    def set_diff(self, d):
+        self.diff = d
+
+    def get_lastdiff(self):
+        return self.lastdiff
+
+    def set_lastdiff(self, d):
+        self.lastdiff = d
+
+    def get_lastTemp(self):
+        return self.lastTemp
+
+    def set_lastTemp(self, t):
+        self.lastTemp = t
+
+
 

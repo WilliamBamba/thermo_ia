@@ -50,13 +50,16 @@ class Agent:
             print("Nouvelle action preferee :  " + str(self.action_pref))
             self.outcome_pref = outcome
             self.pref_action_count = 0
+        else :
+            if self._action != self.action_pref:
+                self._action = self.action_pref
+                outcome = self.outcome_pref
 
 
 
 
-        self._action = self.action_pref
 
-        if self.is_board() or self.hedonist_table[self._action][outcome]<0:
+        if self.is_board() or self.hedonist_table[self._action][outcome] < 0:
             self.changeaction(outcome)
 
 
@@ -78,31 +81,41 @@ class Agent:
 
     def changeaction(self,outcome):
         print("HERE")
+        print(str(self.is_board()) + "Ennuie")
+        self._temp = self._action
+
+        if self._temp == 2 :
+            self._temp = random.randint(0, 1)
+        else :
+            if self.hedonist_table[self._temp][outcome] > 0 :
+                self._temp = 2
+            else :
+                if self._temp == 0:
+                    print("X")
+                    self._temp = random.randint(1,2)
+                elif  self._temp == 1 :
+                    while self._temp == 1:
+                        print("Y")
+                        self._temp = random.randint(0,2)
+
+        self._action = self._temp
+        if self.is_board() == False :
+                print(str(self.is_board()) + "Ennuie")
+                self.action_pref = self._action
         self.good_anticipe_count = 0
         self.pref_action_count = 0
-        self.action_pref = self._action
-        self.outcome_pref = outcome
-        if self._action == 2 :
-            self._action = random.randint(0, 1)
-        else :
-            if self.hedonist_table[self._action][outcome] > 0 :
-                self._action = 2
-            else :
-                if self._action == 0 :
-                    random.randint(1,2)
-                if  self._action == 1 :
-                    while self._action == 1:
-                        random.randint(0,2)
+
     def anticipation(self):
         self.anticipated_outcome = self.memoire[self._action]
 
         return self.anticipated_outcome
 
     def is_board(self):
-        if self._action == 2 :
+        if self.pref_action_count >= self.bored_limit and self.good_anticipe_count >= self.bored_limit :
+            print("Je m'ennuie")
+            return True
+        else:
             return False
-        else :
-            return self.good_anticipe_count >= self.bored_limit and self.pref_action_count >= self.bored_limit
 
     def satisfaction(self, new_outcome):
 
@@ -112,6 +125,7 @@ class Agent:
         #print("YES "+  str(self.hedonist_table[0][1]) + "yes "+ str(self._action) + "yes "+ str(new_outcome))
 
         return anticipation_satisfaction, hedonist_satisfaction, self.is_board()
+
 
     def categorie(self,_contexte) :
         if (_contexte[0]<_contexte[1]):

@@ -12,49 +12,54 @@ def traduction(action) :
         return "2 All Off"
 
 def world(agent, environment):
-    outcome = 0
-    count = 0
-    _contexte = [environment.temperatureInterieur,environment.temperatureVoulue,environment.temperatureExterieur]
-    agent.addcontexte(_contexte)
-    while abs(environment.temperatureInterieur - environment.temperatureVoulue) > 0:
-        action = agent.action(outcome)
-        outcome = environment.outcome(action)
-        if not environment.amelioration :
-            print('ACTION CHANGER')
-            agent.changeaction(outcome)
+
+    for x in range(10):
+        outcome = 0
+        change = False
+        print("change")
+        count = 0
+        _contexte = [environment.get_tInt(),environment.get_tVoulue(),environment.get_tExt()]
+        agent.addcontexte(_contexte)
+        while abs(environment.get_tInt() - environment.get_tVoulue()) > 0:
+
+            action = agent.action(outcome)
             outcome = environment.outcome(action)
-        print(" Action: " + traduction(action) + ", Anticipation: " + str(agent.anticipation()) + ", Outcome: " + str(outcome)
-              + ", Satisfaction: " + str(agent.satisfaction(outcome)))
-        print(" TEMP "+str(environment.temperatureInterieur) +" ("+ str(environment.lastdiff - environment.diff)+")" )
-        count +=1
-    agent.savebestactions()
-    print("Nombres d'actions pour finir : "+ str(count))
+            print(" Action: " + traduction(action) + ", Anticipation: " + str(agent.anticipation()) + ", Outcome: " + str(outcome)
+                  + ", Satisfaction: " + str(agent.satisfaction(outcome)))
+            print(" TEMP "+str(environment.get_tInt()) +" ("+ str(environment.get_lastdiff() - environment.get_diff())+")" )
+            count +=1
+            if environment.update():
+                change = True
+                break
+        if change == False:
+             agent.savebestactions()
+             new_temp = input('Entrer la nouvelle temperature2:')
+             environment.set_tVoulue(int(new_temp))
+
+        environment.set_lastTemp(environment.get_tInt())
+
+
+        print("Nombres d'actions pour finir : "+ str(count))
 good_anticipe_count = 0
-# TODO Define the hedonist values of interactions (action, outcome, outcome_souhaiter)
-# Actions : 0 Chauffage , 1 Clim , 2 Rien
-# Outcome : 0 T Augmente , T Descend , T Inchanger
-# Outcome souhaiter : 0 On veut que T augmente , 1 On veut que T descende
-e = Environment(19,23,18)
+
+e = Environment(19,21,18)
 e2 = Environment(28,21,17)
 e3 = Environment(28,21,17)
 e1 = Environment(19,26,18)
 hedonist_table2=[[2,-2],[2,-2],[3,-1]]
 
-# TODO Choose an agent
-a = Agent(hedonist_table2, 4)
-# TODO Choose an environment
-#e = Environment1()
 
-#e = Environment()
-# e = TurtleSimEnacter()
+a = Agent(hedonist_table2, 4)
+
+
 
 world(a, e)
 print(" |||||||||||||||||||| DEUXIEME ITERATION |||||||||||||")
-world(a, e2)
+#world(a, e2)
 print(" |||||||||||||||||||| TROISIEME ITERATION |||||||||||||")
-world(a,e1)
+#world(a,e1)
 print(" |||||||||||||||||||| QUATRIEME ITERATION |||||||||||||")
 # PAS OUBLIER DE REMETTRE C DEUX VALEURS COMME DE BASE QUAND ON UPDATE LENVIRONNEMENT
-e2.lastTemp =0
-e2.temperatureInterieur = 28
-world(a, e2)
+#e2.lastTemp =0
+#e2.temperatureInterieur = 28
+#world(a, e2)
