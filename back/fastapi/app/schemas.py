@@ -3,6 +3,12 @@ from typing import List, Optional
 import datetime
 
 
+
+class Action(BaseModel):
+    action: int
+    pass
+
+
 class CreateProfile(BaseModel):
     name: str
     city: str
@@ -30,6 +36,7 @@ class CreateSensorData(BaseModel):
 
 class SensorData(CreateSensorData):
     id: int
+    created_at: datetime.datetime
 
     class Config:
         orm_mode = True
