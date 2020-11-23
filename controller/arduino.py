@@ -42,13 +42,34 @@ class ArduinoClient:
         #     except Exception as e:
         #         pass
     
+    # 0 (0, 0)
+    # 0 (1, 0)
+    # 0 (0, 1)
+
+    def led_action(self, action: int):
+        if action == 0:
+            self.green_led.write(0)
+            self.red_led.write(0)
+        elif action == 1:
+            self.green_led.write(1)
+            self.red_led.write(0)
+        elif action == 2:
+            self.green_led.write(0)
+            self.red_led.write(1)
+        else: print('Unknown actions')
+
+
     def send_sensor_data(self):
         temperature = self.read_temp_value()
         if temperature is None: return False
         payload = {'temperature': temperature}
         print('sending:', payload)
         try:
+            pass
             requests.post('{}/sensors/'.format(self.server_url), json=payload)
+            resp = requests.get('{}/sensors/get/action'.format(self.server_url))
+            action = resp.json()
+            self.led_action(action['action'])
         except Exception as e:
             print('error sending data')
             pass
@@ -65,23 +86,27 @@ class ArduinoClient:
         acquisition = pyfirmata.util.Iterator(arduino)
         acquisition.start()
         self.temp_sensor = arduino.get_pin('a:0:i')
-        # TODO: ajouter les leds
+        self.red_led = arduino.get_pin('p:3:o')
+        self.green_led = arduino.get_pin('p:10:o')
 
     def read_temp_value(self):
-        max_temp = 125
         sensor_data = self.temp_sensor.read()
         if sensor_data is None: return None
-
-        sensor_data = float(sensor_data) * max_temp
-        return int(sensor_data)
+        sensor_data = float(sensor_data) * 1024
+        voltage = sensor_data * 5.0;
+        voltage /= 1024.0
+        temperatureC = (voltage - 0.5) * 100
+ 
+        # [(8-10:45), (14-19:30)]
+        return int(temperatureC)
 
 
 
 
 if __name__ == "__main__":
-    serial_port = '/dev/cu.usbmodem14201'
+    serial_port = '/dev/cu.usbmodem14101'
     server_url ='http://localhost:8000'
 
-    client = ArduinoClient(serial_port, server_url)
+    client = ArduinoClient(serial_port, server_url, 2)
 
     client.run()
