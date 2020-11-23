@@ -1,5 +1,6 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 from app.database.config import Base
 
@@ -20,7 +21,7 @@ class Profile(Base):
 
     # input: (8-9:45) (10-11:45) (12:45-17)
     # output: (8-11:45) (12:45-17)
-    def parse_agenda():
+    def parse_agenda(self):
         pass
 
 
@@ -42,4 +43,4 @@ class SensorData(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     temperature = Column(Integer, nullable=True)
-    created_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, server_default=func.now())

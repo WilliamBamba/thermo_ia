@@ -26,7 +26,6 @@ class Profile(UpdateProfile):
 class CreateSensorData(BaseModel):
 
     temperature: int
-    created_at: Optional[datetime.datetime] = datetime.datetime.now()
 
 
 class SensorData(CreateSensorData):
