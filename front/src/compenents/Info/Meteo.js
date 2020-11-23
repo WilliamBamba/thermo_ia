@@ -28,7 +28,7 @@ export default ({store}) => {
     let defaultCity = 'lyon';
     let profile = cookie.getProfile();
     if (profile) defaultCity = profile.city;
-    let [city, setCity] = useState(defaultCity);
+    let [city] = useState(defaultCity);
 
     useEffect(() => fetchMeteo(setWeather, city), [city]);
 

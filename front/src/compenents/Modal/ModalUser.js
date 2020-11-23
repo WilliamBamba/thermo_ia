@@ -1,6 +1,6 @@
 /*import { useState } from "react";*/
 import c  from '../../helpers/cookies';
-import React, { useState } from 'react';
+import React from 'react';
 import fetch from '../../helpers/fetch';
 import config from '../../config';
 
@@ -36,7 +36,7 @@ export default ({store}) => {
             <div id='modalProfil'>
                 <div className="modal-content">
                     <div className="divJoli">
-                        <p className='TitreSection' id="titreModal"> Création de l'utilisateur  </p>
+                        <p className='TitreSection' id="titreModal"> Création du Profil  </p>
                     </div>
                     <form onSubmit={(e) => submitProfileCreation(e, store)}>
                         <div id='input'>
@@ -46,7 +46,7 @@ export default ({store}) => {
                             </div>
                             <div className='inputBlock'>
                                 <label htmlFor="lname">Temperature</label>
-                                <input type="number" ref={temp} id="lname" name="temp" value="23" required/>
+                                <input type="number" ref={temp} id="lname" name="temp" defaultValue="23" required/>
                             </div>
                         </div>
                         <label htmlFor="lname">Lieu où vous habitez</label>
