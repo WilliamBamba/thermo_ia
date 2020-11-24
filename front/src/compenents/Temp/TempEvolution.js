@@ -10,11 +10,11 @@ export default ({store}) => {
     const svgRef = useRef();
 
     function graphiqueTemp(svgRef,data){
-        var tailleData = data.length < 1000 ? 1000 : data.length;
-        data = data.sort((a,b) => b.id - a.id).slice(0,1000)
+        var tailleData = data.length < 1000 ? 1000 : data.length; // Si tu passes à l'heure, tu auras surement plus besoin de ça.
+        data = data.sort((a,b) => b.id - a.id).slice(0,1000) // Pensez à modifier selon le nombre de données qu'on veut faire apparaître.
         
-        var margin = {top: 30, right: 30, bottom: 30, left: 50},
-            width = 460 - margin.left - margin.right,
+        var margin = {top: 30, right: 30, bottom: 30, left: 150},
+            width = 610 - margin.left - margin.right,
             height = 300 - margin.top - margin.bottom;
 
         let svgElement = d3.select(svgRef.current)
