@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from app.routes import weather, profile, sensor
 from app.database import config as db_config, models
 
-from app.ai import models as aiModels
+from app.ai import models as ai_models
 
 models.Base.metadata.create_all(bind=db_config.engine)
 

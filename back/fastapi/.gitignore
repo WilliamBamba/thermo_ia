@@ -1,4 +1,5 @@
 .vscode
 __pycache__
+*__pycache__*
 sql_app.db
 .pytest_cache
