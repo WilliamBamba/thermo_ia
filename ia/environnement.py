@@ -1,7 +1,8 @@
 from datetime import datetime
 
+
 class Environment:
-    def __init__(self, Tint, Tvoulue , Text, agenda):
+    def __init__ (self, Tint, Tvoulue, Text, agenda):
         self.temperatureExterieur = float(Text)
         self.temperatureInterieur = float(Tint)
         self.temperatureVoulue = float(Tvoulue)
@@ -10,99 +11,90 @@ class Environment:
         self.diff = 0
         self.lastdiff = 0
         self.changeTvoulue = False
+        self.pas_amelioration = False
 
-    def outcome(self, action):
-
-       # diff_ext_int = self.get_tExt() - self.get_tInt()
+    def outcome (self, action):
+        print("Bool amelioration : " + str(self.pas_amelioration))
+        # diff_ext_int = self.get_tExt() - self.get_tInt()
         self.set_lastTemp(self.get_tInt())
         self.update()
         self.update_diff()
-        # if action == 0:
-        #      self.set_tInt(self.get_tInt()+(self.get_lastdiff() > self.get_diff()))
-        #
-        # elif action == 1:
-        #      self.set_tInt(self.get_tInt()-(self.get_lastdiff() > self.get_diff()))
-        #
-        # else :
-        #     if diff_ext_int > 0 : # Plus chaud dehors que dedans
-        #         self.set_tInt(self.get_tInt()+(self.get_lastdiff() > self.get_diff()))
-        #     elif diff_ext_int < 0 :
-        #         self.set_tInt(self.get_tInt()-(self.get_lastdiff() > self.get_diff()))
+        if self.get_tInt() == self.get_lastTemp():
+            self.pas_amelioration = True
+        print("Bool amelioration 2 : " + str(self.pas_amelioration))
 
-       # if(self.user_in_house()):
-        #    return 2
-
-        if self.amelioration() :
+        if self.amelioration():
             #   print("Amelioration")
-
             return 0
-        else :
+        else:
             #  print("Pas d'amelioration ")
             return 1
 
-
-    def user_in_house(self):
+    def user_in_house (self):
 
         x = datetime.now()
         return False
 
-    def update(self):
+    def update (self):
         interieur = input('Interieur ? ')
-        exterieur = input('Exterieur ? ')
-        voulue = input('Voulue ? ')
+        voulue = 21
+        exterieur = 18
         self.set_tInt(float(interieur))
         self.set_tExt(float(exterieur))
-        if float(voulue) == self.get_tVoulue() :
+        if float(voulue) == self.get_tVoulue():
             self.changeTvoulue = False
-        else :
-            print("Avant : "+ str(self.get_tVoulue()) + " Apres : "+ str(voulue))
-            self.set_tVoulue(float(voulue))
+        else:
+            print("Avant : " + str(self.get_tVoulue()) + " Apres : " + str(voulue))
+            self.set_t_voulue(float(voulue))
             self.changeTvoulue = True
 
-    def update_test(self):
+    def update_test (self):
         interieur = input('Interieur ? ')
-        exterieur = input('Exterieur ? ')
         voulue = input('Voulue ? ')
+        exterieur = input('Exterieur ? ')
         self.set_tInt(float(interieur))
         self.set_tExt(float(exterieur))
-        if float(voulue) == self.get_tVoulue() :
+        if float(voulue) == self.get_tVoulue():
             self.changeTvoulue = False
-        else :
-            print("Avant : "+ str(self.get_tVoulue()) + " Apres : "+ str(voulue))
-            self.set_tVoulue(float(voulue))
+        else:
+            print("Avant : " + str(self.get_tVoulue()) + " Apres : " + str(voulue))
+            self.set_t_voulue(float(voulue))
             self.changeTvoulue = True
 
-
-    def amelioration(self):
-        #26-22 26-23
+    def amelioration (self):
+        # 26-22 26-23
 
         print(" AMELIORATION ? : " + str(self.lastdiff - self.diff))
-        if self.get_lastdiff() > self.get_diff() :
+        if self.get_lastdiff() > self.get_diff():
             return True
         else:
+            if (self.get_lastTemp() > self.get_tVoulue() and self.get_tInt() < self.get_tVoulue()):
+                return True
+            if (self.get_lastTemp() < self.get_tVoulue() and self.get_tInt() > self.get_tVoulue()):
+                return True
+
             return False
 
-    def update_diff(self) :
+    def update_diff (self):
         self.set_diff(abs(self.get_tVoulue() - self.get_tInt()))
         self.set_lastdiff(abs(self.get_tVoulue() - self.get_lastTemp()))
 
-
-    def get_tInt(self):
+    def get_tInt (self):
         return self.temperatureInterieur
 
-    def set_tInt(self, t):
+    def set_tInt (self, t):
         self.temperatureInterieur = t
 
-    def get_tExt(self):
+    def get_tExt (self):
         return self.temperatureExterieur
 
-    def set_tExt(self, t):
+    def set_tExt (self, t):
         self.temperatureExterieur = t
 
     def get_tVoulue(self):
         return self.temperatureVoulue
 
-    def set_tVoulue(self, t):
+    def set_t_voulue(self, t):
         self.temperatureVoulue = t
 
     def get_diff(self):
@@ -114,14 +106,11 @@ class Environment:
     def get_lastdiff(self):
         return self.lastdiff
 
-    def set_lastdiff(self, d):
+    def set_lastdiff (self, d):
         self.lastdiff = d
 
-    def get_lastTemp(self):
+    def get_lastTemp (self):
         return self.lastTemp
 
-    def set_lastTemp(self, t):
+    def set_lastTemp (self, t):
         self.lastTemp = t
-
-
-
