@@ -12,10 +12,11 @@ models.Base.metadata.create_all(bind=db_config.engine)
 
 app = FastAPI()
 
-# app.state.smartAgent = aiModels.SmartAgent()
-# app.state.smartEnv = aiModels.Environment(Tint=20, Tvoulue=23, Text=20, agenda=['8:00-11:45', '14:00-18:30'])
-# app.state.action = 2 # don't do anything
-# app.state.lastOutcome = 0
+app.state.env = ai_models.Environment(23, 23, 20, [])
+app.state.agent = ai_models.Agent(5, app.state.env)
+app.state.word = ai_models.world
+app.state.outcome = 0
+
 
 
 origins = [

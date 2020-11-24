@@ -1,7 +1,7 @@
 from app.database import models
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app import schemas
 from app.database import crud, config
@@ -31,7 +31,7 @@ def create_profile(profile: schemas.CreateProfile, db: Session = Depends(config.
 
 
 @router.put('/{profile_id}', response_model=schemas.Profile)
-def update_profile(profile_id: int, new_profile: schemas.UpdateProfile , db: Session = Depends(config.get_db)):
+def update_profile(profile_id: int, new_profile: schemas.UpdateProfile, request: Request, db: Session = Depends(config.get_db)):
     profile = crud.get_model_by_id(db, profile_id, models.Profile)
 
     if profile is None:
@@ -39,8 +39,16 @@ def update_profile(profile_id: int, new_profile: schemas.UpdateProfile , db: Ses
 
     # TODO: refresh time_table from agenda url if provided
 
+    app = request.app
+    exterieur = app.state.env.get_tExt()
+    interieur = app.state.env.get_tInt()
+
+
     crud.update_model(db, profile_id, models.Profile, new_profile)
-    return crud.get_model_by_id(db, profile_id, models.Profile)
+    profile =  crud.get_model_by_id(db, profile_id, models.Profile)
+    app.state.env.update(interieur, profile.wtemp, exterieur)
+
+    return profile
 
 
 @router.delete('/{profile_id}')
