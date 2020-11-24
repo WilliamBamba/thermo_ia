@@ -10,104 +10,65 @@ export default ({store}) => {
     const svgRef = useRef();
 
     function graphiqueTemp(svgRef,data){
-        data = data.sort((a,b) => b.id - a.id).slice(0,100).reverse()
+        var tailleData = data.length < 1000 ? 1000 : data.length;
+        data = data.sort((a,b) => b.id - a.id).slice(0,1000)
+        
+        var margin = {top: 30, right: 30, bottom: 30, left: 50},
+            width = 460 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        let svgElement = d3.select(svgRef.current)
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
 
-        // set the ranges
-        var x = d3.scaleTime().range([0, width]);
-        var y = d3.scaleLinear().range([height, 0]);
 
-        // define the line
-        var valueline = d3.line()
-           .x(function(d) { return x(d.id); })
-           .y(function(d) { return y(d.temperature); });
-
-        // append the svg obgect to the body of the page
-        // appends a 'group' element to 'svg'
-        // moves the 'group' element to the top left margin
-        var svgElement = d3.select(svgRef.current)
-           .attr("width", width + margin.left + margin.right)
-           .attr("height", height + margin.top + margin.bottom)
-           .append("g").attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
-
-        // Get the data
-        data.forEach(function(d) {
-            d.id = d.id;
-            d.temperature = d.temperature;
-        });
-
-        // Scale the range of the data
-        x.domain(d3.extent(data, function(d) { return d.id; }));
-        y.domain([0, d3.max(data, function(d) { return d.temperature; })]);
-
-        // Add the valueline path.
-        svgElement.append("path")
-            .data([data])
-            .attr("class", "line")
-            .attr("d", valueline);
-
-        // Add the X Axis
+        // Add X axis --> it is a date format
+        var x = d3.scaleLinear() // #ScaleTime()
+            .domain([tailleData - 1000, tailleData])
+            .range([ 0, width ]);
         svgElement.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
-        // Add the Y Axis
+        // Add Y axis
+        var y = d3.scaleLinear()
+            .domain([0, 60])
+            .range([ height, 0 ]);
         svgElement.append("g")
             .call(d3.axisLeft(y));
-        
-        // var margin = {top: 30, right: 30, bottom: 30, left: 50},
-        //     width = 460 - margin.left - margin.right,
-        //     height = 400 - margin.top - margin.bottom;
 
-        // let svgElement = d3.select(svgRef.current)
-        //         .attr("width", width + margin.left + margin.right)
-        //         .attr("height", height + margin.top + margin.bottom)
-        //     .append("g")
-        //         .attr("transform",
-        //             "translate(" + margin.left + "," + margin.top + ")");
+        svgElement.append("linearGradient")
+            .attr("id", "line-gradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("x1", 0)
+            .attr("y1", y(0))
+            .attr("x2", 0)
+            .attr("y2", y(60))
+            .selectAll("stop")
+              .data([
+                {offset: "0%", color: "rgb(42,203,236)"},
+                {offset: "59%", color: " rgba(199,203,44,1)"},
+                {offset: "100%", color: "rgba(205,47,47,1)"}
+              ])
+            .enter().append("stop")
+              .attr("offset", function(d) { return d.offset; })
+              .attr("stop-color", function(d) { return d.color; });
+      
 
-        // var x = d3.scaleLinear()
-        //         .domain([0,100])
-        //         .range([0,width])
-
-        // svgElement.append("g")
-        //         .attr("transform", "translate(0," + height + ")")
-        //         .call(d3.axisBottom(x));
-
-        // var y = d3.scaleLinear()
-        // .range([height, 0])
-        // .domain([0, 60]);
-        
-        // svgElement.append("g")
-        //   .call(d3.axisLeft(y));
-        
-        // // Add the line
-        // svgElement.append("path")
-        //   .datum(data)
-        //   .attr("fill", "none")
-        //   .attr("stroke", "#69b3a2")
-        //   .attr("stroke-width", 1.5)
-        //   .attr("d", d3.line()
-        //     .x(function(data) { return x(data.id) })
-        //     .y(function(data) { return y(data.temperature) })
-        //     )
-        // // Add the points
-        // console.log(data[0].id)
-        // svgElement
-        //   .append("g")
-        //   .selectAll("dot")
-        //   .data(data)
-        //   .enter()
-        //   .append("circle")
-        //     .attr("cx", function(data) { return x(data.id) } )
-        //     .attr("cy", function(data) { return y(data.temperature) } )
-        //     .attr("r", 5)
-        //     .attr("fill", "#69b3a2")
-    }
+        // Add the line
+        svgElement.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", "url(#line-gradient)")
+            .attr("stroke-width", 3)
+            .attr("d", d3.line()
+            .x(function(d) { console.log('id',d.id);return x(d.id) })
+            .y(function(d) { console.log('temperature',d.temperature);return y(d.temperature) })
+            )
+            }
 
 
     useEffect(() => {
@@ -117,6 +78,7 @@ export default ({store}) => {
             graphiqueTemp(svgRef,data)
         })
       }, [])
+
 
     return (
         <div id='tempEvolution'>
