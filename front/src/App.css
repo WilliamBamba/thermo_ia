@@ -274,6 +274,7 @@
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 50px;
+  margin-left: 10px;
 }
 
 .fa-plus {
@@ -283,11 +284,12 @@
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 50px;
+  margin-right: 10px;
 }
 
 #compteur {
   margin: 10px;
-  font-size: 50px;
+  font-size: 40px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

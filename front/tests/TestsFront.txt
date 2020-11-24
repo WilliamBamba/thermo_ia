@@ -4,16 +4,114 @@
 
 ## Paramètre ##
 
-## Creation Utilisateur ##
+Mise à jour de l'heure 
+=> L'heure se met bien à jour.
+
+Activation du menu quand on clique sur l'icône
+=> Le menu s'ouvre quand on clique sur l'icône.
+
+Changement de l'icône quand le menu est ouvert
+=> L'icône est bien modifié quand le menu est ouvert.
+
+Fermeture du menu quand on clique sur l'icône flèche
+=> Le menu se ferme quand on clique sur l'icône flèche.
+
+Cliquer sur la modification de profil
+=> Le bloc 'Modification de profil' apparait quand on clique sur la modification de profil.
+
+## Création du Profil ##
+
+Apparition du bloc 'Création Profil'
+=> Le bloc 'Création Profil' apparait à l'ouverture de l'application quand aucun profil existe.
+
+Remplir les champs du formulaire
+=> On peut remplir tous les champs du formulaire.
+
+Tous les champs du formulaire sont obligatoire pour créer un profil
+=> On ne peut pas créer un profil si tous les champs ne sont pas remplit.
+
+Creer un profil
+=> On peut créer un profil une fois tous les champs remplit.
+
+Informations enregistré et mis en place sur l'interface
+=> Les différentes informations rentré par l'utilisateur sont mis en place dans l'interface personnalisé.
 
 ## Modification Profil ##
 
+Apparition du bloc 'Modification de Profil'
+=> Le bloc 'Modification de profil' apparait quand on clique sur la modification de profil.
+
+Remplir les champs du formulaire
+=> On peut remplir tous les champs du formulaire
+
+Les deux premiers champs du formulaire sont obligatoire pour modifier le profil
+=> On ne peut pas modifier le profil si les deux premiers champs ne sont pas remplit.
+
+Modifier le profil
+=> On peut modifier le profil une fois les champs obligatoire remplit.
+
+La fenêtre se ferme une fois la modification lancé
+=> La fenêtre se ferme une fois qu'on a modifié le profil.
+
+La fenêtre se ferme si on clique sur la croix
+=> La fenêtre se ferme si on clique sur la croix.
+
 ## Bloc Météo ##
+
+Présence du bloc Météo sur l'interface
+=> Le bloc Météo est présent sur l'interface.
+
+Informations utilisateur présente
+=> Le nom ainsi que la ville de l'utilisateur sont présent.
+
+Présence des cartes météo et leur contenu
+=> On voir 6 cartes météos présentes avec leur contenu.
+
+Mise à jour des cartes météos
+=> Les cartes météos se mettent à jour.
 
 ## Bloc Affichage Température ##
 
+Présence du bloc d'affichage de la température capté sur l'interface
+=> Le bloc d'affichage de la température capté est présent sur l'interface.
+
+La température actuelle est affiché
+=> On peut voir la température actuelle.
+
+Présence du cercle de température
+=> On peut voir le cercle de température.
+
+Le cercle se modifie en fonction de la température
+=> On peut voir que le cercle possède des arcs en plus ou en moins en fonctions de la température.
+
 ## Bloc Gestion Température ##
+
+Présence du bloc gestion de température sur l'interface
+=> Le bloc de gestion de température est présent sur l'interface.
+
+Affichage de la température souhaité par l'utilisateur
+=> On peut voir la température souhaité par l'utilisateur.
+
+Baisse de la température quand on clique sur l'icône -
+=> La température baisse d'un cran quand on clique sur l'icône -.
+
+Hausse de la température quand on clique sur l'icône +
+=> La température hausse d'un cran quand on clique sur l'icône +.
 
 ## Bloc Graphe Evolution Température ##
 
+Présence du bloc d'évolution de la température sur l'interface
+=> Le bloc d'évolution de la température est présent dans l'interface.
+
+Présence du graphe représentatif de l'évolution de la température
+=> On peut voir un graphe qui représente l'évolution de la température.
+
 ## Rechargement Page ##
+
+Quand on recharge la page, les données sont conservées.
+=> On peut voir que les données sont conservées quand on recharge la page.
+
+## Interface Responsive ##
+
+On peut réduire l'interface jusqu'à un certain stade
+=> On voit qu'on peut réduire l'interface jusqu'à un certain stade.

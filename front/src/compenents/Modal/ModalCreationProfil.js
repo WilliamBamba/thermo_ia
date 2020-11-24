@@ -41,18 +41,18 @@ export default ({store}) => {
             <div id='modalProfil'>
                 <div className="modal-content">
                     <div className="divJoli">
-                        <p className='TitreSection' id="titreModal"> Création Programme </p>
+                        <p className='TitreSection' id="titreModal"> Modification Profil </p>
                         <span onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} className="close">&times;</span>
                     </div>
                     <form onSubmit={(e) => submitProfileModification(e, store)}>
                         <label htmlFor="fname">Nom</label>
-                        <input type="text" ref={prenom} id="fname" name="nom" placeholder={c.getProfile().name}/>
+                        <input type="text" ref={prenom} id="fname" name="nom" defaultValue={c.getProfile().name} required />
 
                         <label htmlFor="lname">Lieu où vous habitez</label>
-                        <input type="text" ref={city} id="lieu" name="ville" placeholder={c.getProfile().city} required />
+                        <input type="text" ref={city} id="lieu" name="ville" defaultValue={c.getProfile().city} required />
 
                         <label htmlFor="lname">URL de votre Agenda</label>
-                        <input type="text" ref={url_agenda} id="agenda" name="agenda" placeholder={c.getProfile().url_agenda}/>
+                        <input type="text" ref={url_agenda} id="agenda" name="agenda" defaultValue={c.getProfile().url_agenda}/>
                     
                         <input type="submit" value="Modifier"/>
                     </form>

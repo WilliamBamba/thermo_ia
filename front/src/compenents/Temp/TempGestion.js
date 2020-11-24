@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";*/
 import React from 'react';
 import c  from '../../helpers/cookies';
 import fetch from '../../helpers/fetch';
@@ -35,9 +35,9 @@ export default ({store}) => {
         <div id='tempGestion'>
             <p className='TitreSection'> Température Souhaitée </p>
             <div className='containerGestion'>
-                <i onClick={() => updateTemp(store, -1)} className="fas fa-minus fa-8x"></i>
-                <p id='compteur'>{getWtemp(store)} °C</p>
-                <i onClick={() => updateTemp(store, 1)} className="fas fa-plus fa-8x"></i>
+                <i onClick={() => updateTemp(store, -1)} className="fas fa-minus fa-7x"></i>
+                <p id='compteur'>{getWtemp(store)}°C</p>
+                <i onClick={() => updateTemp(store, 1)} className="fas fa-plus fa-7x"></i>
             </div>
         </div>
     );
