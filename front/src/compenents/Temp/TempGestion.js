@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from 'react';
+import c  from '../../helpers/cookies';
 import fetch from '../../helpers/fetch';
 import config from '../../config';
 
@@ -13,6 +14,7 @@ export default ({store}) => {
         fetch.putData(config.server + config.routes.profile.post + profile.id, profile)
              .then(r => r.json())
              .then(profile_db => {
+                c.setCookie('profile', JSON.stringify(profile_db), 1);
                 store.merge({'profile': profile_db})
              })
     }

@@ -11,10 +11,7 @@ export default ({store}) => {
                 <p> Paramètres </p>
                 <ul className="menu">
                     <li>
-                        <button onClick={() => store.merge({modalProfil: !store.state.modalProfil})} className="buttonProfil"> Programme Exemple </button>
-                    </li>
-                    <li>
-                        <button onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} id='CreationProfil' className="buttonProfil"> Création Programme</button>
+                        <button onClick={() => store.merge({modalCreationProfil: !store.state.modalCreationProfil})} className="buttonProfil"> Modification du Profil </button>
                     </li>
                 </ul>
             </div>
