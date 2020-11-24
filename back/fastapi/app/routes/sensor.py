@@ -15,7 +15,7 @@ router = APIRouter()
 
 
 @router.get('/get/action')
-def get_sensor_data(request: Request):
+def get_sensor_action(request: Request):
     # app = request.app
     # agent = app.state.smartAgent
     # outcome = agent.action(app.state.lastOutcome)

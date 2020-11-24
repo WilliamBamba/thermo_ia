@@ -32,12 +32,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
 
 app.include_router(weather.router, prefix='/weather')
 app.include_router(profile.router, prefix='/profiles')
 app.include_router(sensor.router, prefix='/sensors')
 
+app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
 
 
 
