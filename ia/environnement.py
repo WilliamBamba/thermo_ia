@@ -15,7 +15,7 @@ class Environment:
 
        # diff_ext_int = self.get_tExt() - self.get_tInt()
         self.set_lastTemp(self.get_tInt())
-       # self.update()
+        self.update()
         self.update_diff()
         # if action == 0:
         #      self.set_tInt(self.get_tInt()+(self.get_lastdiff() > self.get_diff()))
@@ -58,6 +58,20 @@ class Environment:
             print("Avant : "+ str(self.get_tVoulue()) + " Apres : "+ str(voulue))
             self.set_tVoulue(float(voulue))
             self.changeTvoulue = True
+
+    def update_test(self):
+        interieur = input('Interieur ? ')
+        exterieur = input('Exterieur ? ')
+        voulue = input('Voulue ? ')
+        self.set_tInt(float(interieur))
+        self.set_tExt(float(exterieur))
+        if float(voulue) == self.get_tVoulue() :
+            self.changeTvoulue = False
+        else :
+            print("Avant : "+ str(self.get_tVoulue()) + " Apres : "+ str(voulue))
+            self.set_tVoulue(float(voulue))
+            self.changeTvoulue = True
+
 
     def amelioration(self):
         #26-22 26-23

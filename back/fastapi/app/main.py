@@ -1,14 +1,20 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes import weather, profile, sensor
 from app.database import config as db_config, models
 
+from app.ai import models as aiModels
 
 models.Base.metadata.create_all(bind=db_config.engine)
 
 
 app = FastAPI()
+
+app.state.smartAgent = aiModels.SmartAgent()
+app.state.smartEnv = aiModels.Environment(Tint=20, Tvoulue=23, Text=20, agenda=['8:00-11:45', '14:00-18:30'])
+app.state.action = 2 # don't do anything
+app.state.lastOutcome = 0
 
 
 origins = [

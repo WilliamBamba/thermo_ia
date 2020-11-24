@@ -1,15 +1,120 @@
+
+from datetime import datetime
 import random
 
+class Environment:
+    def __init__(self, Tint, Tvoulue , Text, agenda):
+        self.temperatureExterieur = Text
+        self.temperatureInterieur = Tint
+        self.temperatureVoulue = Tvoulue
+        self._agenda = agenda
+        self.lastTemp = 0
+        self.diff = 0
+        self.lastdiff = 0
 
-class Agent:
-    def __init__(self, _hedonist_table, bored_limit,environnement):
+    def outcome(self, action):
+        diff_ext_int = self.get_tExt() - self.get_tInt()
+        self.set_lastTemp(self.get_tInt())
+        if action == 0:
+            self.set_tInt(self.get_tInt()+0.5)
+
+        elif action == 1:
+            self.set_tInt(self.get_tInt()-0.5)
+
+        else :
+            if diff_ext_int > 0 : # Plus chaud dehors que dedans
+                self.set_tInt(self.get_tInt()+0.5)
+            elif diff_ext_int < 0 :
+                self.set_tInt(self.get_tInt()-0.5)
+
+        if(self.user_not_in_house()):
+            return 2
+
+        if self.amelioration() :
+            #   print("Amelioration")
+
+            return 0
+        else :
+            #  print("Pas d'amelioration ")
+            return 1
+
+
+    def user_not_in_house(self):
+
+        x = datetime.now()
+
+        return False
+
+    def update(self):
+        x = input('Changer temperature voulue ?')
+        if x == 'oui' :
+            new_temp = input('Entrer la nouvelle temperature:')
+            self.set_tVoulue(int(new_temp))
+            return True
+        else :
+            return False
+
+    def amelioration(self):
+        #26-22 26-23
+        self.update_diff()
+        # print(" AMELIORATION ? : " + str(self.lastdiff - self.diff))
+        if self.get_lastdiff() > self.get_diff() :
+            return True
+        else:
+            return False
+
+    def update_diff(self) :
+        self.set_diff(abs(self.get_tVoulue() - self.get_tInt()))
+        self.set_lastdiff(abs(self.get_tVoulue() - self.get_lastTemp()))
+
+
+    def get_tInt(self):
+        return self.temperatureInterieur
+
+    def set_tInt(self, t):
+        self.temperatureInterieur = t
+
+    def get_tExt(self):
+        return self.temperatureExterieur
+
+    def set_tExt(self, t):
+        self.temperatureExterieur = t
+
+    def get_tVoulue(self):
+        return self.temperatureVoulue
+
+    def set_tVoulue(self, t):
+        self.temperatureVoulue = t
+
+    def get_diff(self):
+        return self.diff
+
+    def set_diff(self, d):
+        self.diff = d
+
+    def get_lastdiff(self):
+        return self.lastdiff
+
+    def set_lastdiff(self, d):
+        self.lastdiff = d
+
+    def get_lastTemp(self):
+        return self.lastTemp
+
+    def set_lastTemp(self, t):
+        self.lastTemp = t
+
+
+
+
+class SmartAgent:
+    def __init__(self, bored_limit: int = 5):
         """ Creating our agent """
-        self.hedonist_table = _hedonist_table
+        self.hedonist_table = [[2,-2,-2],[2,-2,-2],[3,-1,4]]
         self._action = 2
         self.anticipated_outcome = 0
-        self.env = environnement
-        self.contexte= [self.env.get_tInt(),self.env.get_tVoulue(),self.env.get_tExt()]
-        self._categorie = self.categorie(self.contexte)
+        self.contexte = [0,0,0]
+        self._categorie = " "
         self.bored_limit = bored_limit
         self.good_anticipe_count = 0
         self.memoire = {}
@@ -23,28 +128,24 @@ class Agent:
         self.contexte = _contexte
         self._categorie = self.categorie(_contexte)
         self.pref_action_count = 0
-
-        if self.searchSemblable() == False :
-            self.action_pref = 2
-            self.outcome_pref = 0
-            self._action = 2
-
-    def searchSemblable(self):
-
         if str(self.contexte) in self.bestactions :
             self.action_pref = self.bestactions[str(self.contexte)][0]
             self.outcome_pref = self.bestactions[str(self.contexte)][1]
             self._action = self.action_pref
-            return True
         else :
+            trouver = False
             for key, values in self.bestactions.items():
                 if (values[2] == self._categorie) :
                     print(" Semblable trouver : "+ str(key))
                     self.action_pref = self.bestactions[str(key)][0]
                     self.outcome_pref = self.bestactions[str(key)][1]
                     self._action = self.action_pref
-                    return True
-        return False
+                    trouver = True
+
+            if trouver == False :
+                self.action_pref = 2
+                self.outcome_pref = 0
+                self._action = 2
 
 
     def action(self, outcome):
@@ -110,7 +211,7 @@ class Agent:
         return self.anticipated_outcome
 
     def is_board(self):
-        if self.pref_action_count >= self.bored_limit and self.good_anticipe_count >= self.bored_limit and# action not in best actions :
+        if self.pref_action_count >= self.bored_limit and self.good_anticipe_count >= self.bored_limit :
             print("Je m'ennuie")
             return True
         else:
@@ -138,12 +239,10 @@ class Agent:
             else :
                 return "D"
 
-    def savebestactions(self,action,outcome) :
+    def savebestactions(self) :
         if not str(self.contexte) in self.bestactions:
             print(" CATEGORIE : " + self.categorie(self.contexte))
-            self.bestactions[str(self.contexte)]=[action,outcome,self._categorie]
-            print(self.bestactions[str(self.contexte)])
-        else :
-            if self.hedonist_table[self.bestactions[str(self.contexte)][0]][self.bestactions[str(self.contexte)][1]] > self.hedonist_table[action][outcome] :
-                print('Ne rien faire : ' + str(self.hedonist_table[self.bestactions[str(self.contexte)][0]][self.bestactions[str(self.contexte)][1]]))
+            self.bestactions[str(self.contexte)]=[self.action_pref,self.outcome_pref,self._categorie]
+        print(self.bestactions[str(self.contexte)])
+
 
