@@ -16,17 +16,16 @@ router = APIRouter()
 
 @router.get('/get/action')
 def get_sensor_data(request: Request):
-    app = request.app
-    agent = app.state.smartAgent
-    outcome = agent.action(app.state.lastOutcome)
-    app.state.lastOutcome = outcome
+    # app = request.app
+    # agent = app.state.smartAgent
+    # outcome = agent.action(app.state.lastOutcome)
+    # app.state.lastOutcome = outcome
     
     return {'action': 2}
 
 
 @router.get('/', response_model=List[schemas.SensorData])
 def get_sensor_data(db: Session = Depends(config.get_db)):
-
     return crud.get_all(db, models.SensorData)
 
 
@@ -37,9 +36,9 @@ def get_most_recent_sensor_data(db: Session = Depends(config.get_db)):
 
 @router.post('/', response_model=schemas.SensorData)
 def create_sensor_data(sensor_data: schemas.CreateSensorData, request: Request, db: Session = Depends(config.get_db)):
-    app = request.app
-    app.state.lastSensorData = sensor_data.temperature
-    print(app.state.action)
+    # app = request.app
+    # app.state.lastSensorData = sensor_data.temperature
+    # print(app.state.action)
     return crud.create_model(db, models.SensorData, sensor_data) 
 
 
