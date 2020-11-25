@@ -22,18 +22,14 @@ class ArduinoClient:
         self.connect()
 
 
-    # 0 (0, 0)
-    # 0 (1, 0)
-    # 0 (0, 1)
-
     def led_action(self, action: int):
-        if action == 0:
+        if action == 2:
             self.green_led.write(0)
             self.red_led.write(0)
         elif action == 1:
             self.green_led.write(1)
             self.red_led.write(0)
-        elif action == 2:
+        elif action == 0:
             self.green_led.write(0)
             self.red_led.write(1)
         else: print('Unknown actions')
@@ -87,6 +83,6 @@ if __name__ == "__main__":
     serial_port = '/dev/cu.usbmodem14101'
     server_url ='http://localhost:8000'
 
-    client = ArduinoClient(serial_port, server_url, 2)
+    client = ArduinoClient(serial_port, server_url, 10)
 
     client.run()
